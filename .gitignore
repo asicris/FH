@@ -1,0 +1,25 @@
+# --- Producion e Seguridade ---
+# Protexer a carpeta de prompts (se non queres que os alumnos vexan a xeración)
+prompts/
+
+# --- Ficheiros de Sistema ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDEs e Editores ---
+.vscode/
+.idea/
+*.swp
+*.sublime-project
+
+# --- Ficheiros Temporais e Logs ---
+*.log
+tmp/
+dist/
+site/
+
+# --- Seguridade Web ---
+# Nunca subir ficheiros que conteñan credenciais ou variables de contorno
+.env
+config_privada.json
