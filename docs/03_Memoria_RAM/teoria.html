@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>teoria.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="memoria-ram-fundamentos-t%C3%A9cnicos">Memoria RAM: Fundamentos Técnicos</h1>
+<h2 id="definici%C3%B3n-t%C3%A9cnica">Definición Técnica</h2>
+<p>A <strong>Memoria RAM (Random Access Memory)</strong> é un dispositivo de almacenamento volátil de acceso rápido integrado na placa base do computador. Os datos almacenados desaparecen ao desconectar a alimentación eléctrica. Funciona como zona de traballo do procesador, almacenando instrucións e datos que precisa durante a execución de programas.</p>
+<h3 id="caracter%C3%ADsticas-principais">Características Principais</h3>
+<ul>
+<li><strong>Acceso Aleatorio:</strong> Calquera posición de memoria pode ser accedida en tempo constante</li>
+<li><strong>Volátil:</strong> Perda de datos ao cortar a alimentación</li>
+<li><strong>Síncrona:</strong> Operacións sincronizadas co reloxo do sistema</li>
+<li><strong>Tecnoloxía DRAM:</strong> Capacitores que almacenan información en forma de carga eléctrica</li>
+</ul>
+<hr>
+<h2 id="1-gu%C3%ADa-de-compra-memoria-ram-para-pc-ou-port%C3%A1til">1. Guía de Compra: Memoria RAM para PC ou Portátil</h2>
+<p>Para elixir a memoria correcta para un PC ou portátil, debemos fixarnos nestes catro piares fundamentais:</p>
+<h3 id="11-formato-f%C3%ADsico">1.1 Formato Físico</h3>
+<ul>
+<li><strong>DIMM (<em>Dual In-line Memory Module</em>):</strong> Módulos longos deseñados para ordenadores de sobremesa.</li>
+<li><strong>SO-DIMM (<em>Small Outline DIMM</em>):</strong> Módulos máis curtos e compactos, específicos para portátiles, Mini-PCs e algunhas placas base integradas.</li>
+</ul>
+<p><img src="./img/image9.png" alt="DIMM | SO-DIMM"></p>
+<h3 id="12-tecnolox%C3%ADa-e-xeraci%C3%B3n">1.2. Tecnoloxía e Xeración</h3>
+<ul>
+<li><strong>Compatibilidade:</strong> A xeración (<strong>DDR4, DDR5</strong>, etc.) debe coincidir coa ranura da placa base.</li>
+<li><strong>Non hai retrocompatibilidade</strong>. Cada xeración ten unha <strong>muesca física</strong> (key notch) nunha posición distinta e traballa a <strong>voltaxes</strong> diferentes para evitar erros de instalación.</li>
+</ul>
+<h3 id="13-frecuencia-e-capacidade">1.3. Frecuencia e Capacidade</h3>
+<ul>
+<li><strong>Velocidade (MT/s):</strong> É vital verificar que tanto o procesador (CPU) como a placa base soportan a frecuencia da memoria (ex. 3200 MT/s ou 6000 MT/s).</li>
+<li><strong>Cantidade (GB):</strong> Debe ir acorde ao uso do sistema. Actualmente, o estándar mínimo recomendable para un rendemento fluído é de <strong>16 GB</strong>.</li>
+</ul>
+<h3 id="14-canle-de-memoria-dual-channel">1.4. Canle de Memoria (Dual Channel)</h3>
+<ul>
+<li><strong>Configuración:</strong> Sempre que sexa posible, é preferible instalar os módulos por parellas (ex. <strong>2x8 GB</strong> en lugar de <strong>1x16 GB</strong>).</li>
+<li><strong>Vantaxe:</strong> Isto activa o <em>Dual Channel</em>, o que permite duplicar o ancho de banda de comunicación entre a RAM e o procesador.</li>
+</ul>
+<h3 id="15-cantidade-de-memoria-que-soporta-a-placa">1.5 Cantidade de memoria que soporta a placa</h3>
+<p>Mirar no manual da placa as especificacións da cantidade máxima de memoria que soporta.</p>
+<ul>
+<li>En canto a <strong>ECC</strong>, esta técnica é para servidores, aínda que hai algunha CPU AMD que a soporta, son poucos modelos de alta gama, e que hai que revisar ben a placa.</li>
+</ul>
+<p><img src="./img/image5.png" alt="Memorias RAM"></p>
+<h4 id="analizamos-esta-memoria-antes-de-ver-caracter%C3%ADsticas">Analizamos esta memoria antes de ver características</h4>
+<p><a href="https://www.pccomponentes.com/acer-predator-pallas-ii-ddr5-6000mhz-32gb-2x16gb-cl34-negra-intel-xmp-30-amd-expo">Acer Predator Pallas II DDR5 6000MHz 32GB 2x16GB CL34 Negra Intel XMP 3.0 / AMD EXPO</a></p>
+<p><img src="./img/image6.png" alt="Memoria DDR5"></p>
+<p><img src="./img/image7.png" alt="Especificaciones concretas"></p>
+<p><strong>Estrutura dos módulos de RAM</strong></p>
+<p><img src="./img/image8.png" alt="Estrutura dos módulos de RAM"></p>
+<hr>
+<h2 id="2-tipos-de-memoria-ram-actuais">2. Tipos de Memoria RAM Actuais</h2>
+<h3 id="21-ddr4-double-data-rate-4">2.1 DDR4 (Double Data Rate 4)</h3>
+<p><strong>Especificacións Técnicas:</strong></p>
+<ul>
+<li><strong>Voltaxe:</strong> 1.2V ± 0.06V</li>
+<li><strong>Frecuencia:</strong> 2133 MHz - 3200 MHz (estándar JEDEC)</li>
+<li><strong>Overclocking:</strong> Até 4800+ MHz con <strong>XMP</strong></li>
+<li><strong>Pines:</strong> 288 pines (DIMM estándar)</li>
+<li><strong>Canles de Datos:</strong> 64 bits por DIMM</li>
+<li><strong>Ancuro de Banda:</strong> 21.3 GB/s (DDR4-2666) a 51.2 GB/s (DDR4-4800)</li>
+</ul>
+<p>A placa base ten un circuito regulador de voltaxe e envía a enerxía lista aos módulos de memoria.</p>
+<p><strong>Estructura da memoria:</strong></p>
+<ul>
+<li>8 ou 16 bancos de memoria</li>
+<li>Dentro dos bancos de memoria a información organízase en <strong>filas e columnas</strong>, como se fose unha folla de cálculo:
+<ul>
+<li>Fila (tamaño): 512 bits</li>
+<li>Columna(tamaño): variable segundo o modelo (En función do tamaño do chip)</li>
+</ul>
+</li>
+<li>Cando a CPU le un dato, non lé so ese bit, senón que le a fila completa de 512bits e gárdaa nun buffer (<em>Row Buffer</em>)</li>
+</ul>
+<h3 id="22-ddr5-double-data-rate-5">2.2 DDR5 (Double Data Rate 5)</h3>
+<p><strong>Especificacións Técnicas:</strong></p>
+<ul>
+<li><strong>Voltaxe:</strong> 1.1V ± 0.05V</li>
+<li><strong>Frecuencia:</strong> 4800 MHz - 6400+ MHz (estándar JEDEC)</li>
+<li><strong>Pines:</strong> 288 pines (DIMM estándar, fisica diferente)</li>
+<li><strong>Canles de Datos:</strong> 2× 32 bits (arquitetura de doble canle interna)</li>
+<li><strong>Ancuro de Banda:</strong> 38.4 GB/s (DDR5-4800) a 102.4 GB/s (DDR5-6400)</li>
+<li><strong>Sub-canles:</strong> 2 sub-canles de 16 bits por lado (para xestión interna dentro do canle de 32bits)</li>
+<li><strong>Regulador Integrado:</strong> <strong>PMIC</strong> (Power Management IC) na DIMM</li>
+</ul>
+<p>O circuíto regulador de voltaxe (<strong>PMIC</strong>) está integrado no <strong>propio módulo de memoria</strong>, os módulos son máis complexos e quéntanse algo máis que os predecesores.</p>
+<p><strong>Vantaxes sobre DDR4:</strong></p>
+<ul>
+<li>Voltaxe reducida (menor consumo, 8.3% máis eficiente)</li>
+<li><strong>Doble ancho de banda teórico</strong>: débese a que nas DDR5, cada módulo de memoria divídese en <strong>2 sub-canles internas</strong>, de <strong>32 bits</strong> cada unha, de forma que se os núcleos da CPU solicitan info de pequeno tamaño a memoria, cada subcanle pode dar información independente á CPU, estas canles poden ser de lectura ou escritura, facendo que o tráfico sexa máis fluído, xa que unha canle pode estar facendo unha lectura e outra unha escritura, mentres nas DDR4, ao haber un so canle, so pode facer unha operación ao mesmo tempo.</li>
+<li><strong>Mellor escalabilidade en frecuencia</strong>: xa qu eo módulo PMIC, módulo de regulación de voltaxe no propio chip reduce o ruído eléctrico e permite subir a frecuencia. A tecnoloxía <strong>ODECC</strong>, On-Die ECC, corrixe erros dentro do chip de memoria (<em>non confundir esta tecnooxía coa ECC que teñen os módulos RAM dos servidores</em>),</li>
+</ul>
+<blockquote>
+<p>Isto indica que aínda que a <strong>igual ancho de banda, a eficiencia de acceso é moito mellor</strong> a de DDR5 motivado pola subdivisión de canles.</p>
+</blockquote>
+<h3 id="23-comparativa-ddr4-vs-ddr5">2.3 Comparativa DDR4 vs DDR5</h3>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>DDR4</th>
+<th>DDR5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Voltaxe</td>
+<td>1.2V</td>
+<td>1.1V</td>
+</tr>
+<tr>
+<td>Frecuencia Base</td>
+<td>2133-3200 MHz</td>
+<td>4800-6400 MHz</td>
+</tr>
+<tr>
+<td>Ancho de Banda</td>
+<td>17-51 GB/s</td>
+<td>38-102 GB/s</td>
+</tr>
+<tr>
+<td>Latencia CAS</td>
+<td>15-20</td>
+<td>30-40</td>
+</tr>
+<tr>
+<td>Pines</td>
+<td>288</td>
+<td>288 (diferente)</td>
+</tr>
+<tr>
+<td>PMIC</td>
+<td>Externo</td>
+<td>Integrado</td>
+</tr>
+<tr>
+<td>Consumo</td>
+<td>Normal</td>
+<td>Reducido</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Ollo!</strong> Cando o fabricante amosa DDR4-2666, xa está duplicando o flanco de subida e de baixada en DDR a frecuencia é 1333 e as MT/s son 2666
+<img src="./img/image11.png" alt="ddr vs sdr"></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Xeración</th>
+<th style="text-align:left">Estándar JEDEC</th>
+<th style="text-align:left">Velocidade (MT/s)</th>
+<th style="text-align:left">Frecuencia Reloxo (MHz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>DDR4</strong></td>
+<td style="text-align:left">DDR4-2133</td>
+<td style="text-align:left">2133</td>
+<td style="text-align:left">1066.5</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>DDR4</strong></td>
+<td style="text-align:left">DDR4-2666</td>
+<td style="text-align:left">2666</td>
+<td style="text-align:left">1333</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>DDR4</strong></td>
+<td style="text-align:left">DDR4-3200</td>
+<td style="text-align:left">3200</td>
+<td style="text-align:left">1600</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>DDR5</strong></td>
+<td style="text-align:left">DDR5-4800</td>
+<td style="text-align:left">4800</td>
+<td style="text-align:left">2400</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>DDR5</strong></td>
+<td style="text-align:left">DDR5-5200</td>
+<td style="text-align:left">5200</td>
+<td style="text-align:left">2600</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>DDR5</strong></td>
+<td style="text-align:left">DDR5-5600</td>
+<td style="text-align:left">5600</td>
+<td style="text-align:left">2800</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-par%C3%A1metros-de-latencia-e-timing">3. Parámetros de Latencia e Timing</h2>
+<h3 id="31-latencia-cas-cl---cas-latency-vs-latencia-real">3.1 Latencia CAS (CL - CAS Latency) vs Latencia Real</h3>
+<p>Número de ciclos de reloxo que <strong>tarda en accederse aos datos</strong> desde o envío da orde de lectura.</p>
+<p>A latenncias CAS, é distinta que a Latencia Real.</p>
+<ul>
+<li><strong>DDR4:</strong> CL15-CL20 (típico CL16, necesita 16 ciclos para acceder)</li>
+<li><strong>DDR5:</strong> CL30-CL40 (típico CL36-CL38, <strong>necesita 36 ciclos para acceder, pero nestas memorias a frecuencia é maior, así que a latencia real pode ser menor</strong>.)</li>
+</ul>
+<p>$$\text{Latencia Real (ns)} = \frac{\text{CL}}{f \text{ MHz}} \times 1000$$</p>
+<p><strong>Exemplo DDR4-3200 CL16:</strong>
+$$\text{Latencia} = \frac{16}{3200} \times 1000 = 5 \text{ ns}$$</p>
+<p><strong>Exemplo DDR5-6400 CL38:</strong>
+$$\text{Latencia} = \frac{30}{6400} \times 1000 = 4.6 \text{ ns}$$</p>
+<h3 id="32-timings">3.2 Timings</h3>
+<p>Os timings son os <strong>tempos de espera que o controlador de memoria ten que respectar entre as distintas operacións</strong>. Pénsao como os semáforos dunha cidade: aínda que un coche poida ir moi rápido (frecuencia), se os semáforos tardan moito en poñerse en verde, o tempo total de viaxe será maior.</p>
+<p>Como a información está en Bancos e dentro destes en Filas e Columnas, hai uns tempos de acceso a fila, columna, desactivar esa fila, tempo que esa fila pode estar aberta,...</p>
+<ul>
+<li><strong>tRCD (RAS to CAS Delay):</strong> É o tempo que pasa dende que se escolle a fila ata que se pode acceder á columna.</li>
+<li><strong>tRP (RAS Precharge):</strong> É o tempo necesario para &quot;pechar&quot; unha fila e deixar o banco listo para abrir outra.</li>
+<li><strong>tRAS (Row Active Time):</strong> Define canto tempo ten que estar aberta unha fila como mínimo para que os datos non se corrompan.</li>
+<li><strong>tCR (Command Rate):</strong> é o tempo que tarda o controlador desde que selecciona un módulo antes de poder empezar a falarlle. Os valores poden ser: 1T é máis rápido, e 2T que é mais lento pero ofrece un sinal máis estable.</li>
+<li><strong>tRFC (Refresh Cycle):</strong> Como a RAM é dinámica, perde a carga. Este valor indica canto tempo para a memoria para &quot;recargarse&quot;.</li>
+</ul>
+<h3 id="33-frecuencia-e-ancho-de-banda">3.3 Frecuencia e Ancho de Banda</h3>
+<p>$$\text{Ancho de Banda (MB/s)} =  \text{ Frecuencia(MHz=MT/s)} \times Canles \times \text{Ancho do bus (bytes)} = \frac{\text{MT/s} \times 8}{1000}$$</p>
+<blockquote>
+<p>Lembrade que a <strong>Velocidade de transferencia</strong> é o ancho de banda efectivo, a velocidade á que pasan realmente.</p>
+</blockquote>
+<h4 id="dual-channel"><strong>DUAL CHANNEL</strong></h4>
+<p><strong>Exemplo DDR4-3200 en dual channel:</strong></p>
+<ul>
+<li><strong>Ancho de banda = 3200 × 2 × 8 bytes = 51.2 GB/s</strong>
+<ul>
+<li>MT/s = 3200 ( Megatransfers/segundo)</li>
+<li>Canles = 2</li>
+<li>Ancho bus = 64 bits = 8 bytes</li>
+</ul>
+</li>
+</ul>
+<p><strong>Exemplo DDR5-6400 en dual channel:</strong></p>
+<ul>
+<li>MT/s = 6400 ( Megatransfers/segundo)</li>
+<li>Ancho de banda = 6400 × 2 × 8 bytes = 102.4 GB/s
+<ul>
+<li>MT/s = 6400 ( Megatransfers/segundo)</li>
+<li>Canles = 2</li>
+<li>Ancho bus = 64 bits = 8 bytes</li>
+</ul>
+</li>
+</ul>
+<h4 id="single-channel"><strong>SINGLE CHANNEL</strong></h4>
+<p><strong>Exemplo DDR5-6400 en Single Channel (1 so módulo de memoria nun PC):</strong></p>
+<ul>
+<li>MT/s = 6400 ( Megatransfers/segundo)</li>
+<li>Ancho de banda = 6400 × 1 × 8 bytes = 51.2 GB/s
+<ul>
+<li>MT/s = 6400 ( Megatransfers/segundo)</li>
+<li>Canles = 1</li>
+<li>Ancho bus = 64 bits = 8 bytes</li>
+</ul>
+</li>
+</ul>
+<p>e este caso, canto sería? <strong>Exemplo DDR4-3200 en single channel, 1 so módulo de memoria no PC??</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta"> #</span><span class="bash"> Resolve</span>
+
+</div></code></pre>
+<hr>
+<h2 id="4-tecnolox%C3%ADas-de-optimizaci%C3%B3n">4. Tecnoloxías de Optimización</h2>
+<h3 id="41-dual-channel">4.1 Dual Channel</h3>
+<p><strong>Concepto:</strong> A placa base dispoñe de 2 controladores de memoria independentes funcionando en paralelo.</p>
+<p><strong>Configuración::</strong></p>
+<ul>
+<li>Dúas DIMM en canles diferentes</li>
+<li>Cada canle: 64 bits de datos en paralelo</li>
+<li>Ancho de banda total: 2× ancho de banda simple</li>
+</ul>
+<p><strong>Beneficio:</strong> +50% de rendimiento en operacións paralelas (transferencias simultáneas)</p>
+<p><strong>Organización Típica:</strong></p>
+<ul>
+<li>Adoitan usarse os slots que están mais lonxe da CPU</li>
+<li>Na maioría das placas veñen coloreados da misma forma os slots que traballan en dual channel</li>
+</ul>
+<p><img src="./img/image10.png" alt="Dual Channel"></p>
+<p><strong>Flex Memory</strong>
+Algunhas placas base modernas teñen unha tecnoloxía chamada Intel <strong>Flex Memory</strong>. Imaxina que temos <strong>un módulo de 8 GB e outro de 4 GB</strong>.</p>
+<p>Se os coloca correctamente nas slots de distintas canles (A2 e B2):</p>
+<ul>
+<li>Os <strong>primeiros 4 GB</strong> de cada módulo (8 GB en total) funcionarán en <strong>Dual Channel</strong>.</li>
+<li>Os <strong>4 GB restantes</strong> do módulo maior funcionarán en <strong>Single Channel</strong> .</li>
+</ul>
+<p>Isto axuda a que o sistema sexa máis eficiente incluso con módulos desparellos.</p>
+<h3 id="42-triple-channel-e-quad-channel">4.2 Triple Channel e Quad Channel</h3>
+<ul>
+<li><strong>Triple Channel:</strong> 3 DIMM en paralelo (plataformas HEDT Intel X79/X99) -- <strong>NON USADO A DÍA DE HOXE</strong>.</li>
+<li><strong>Quad Channel:</strong> 4 DIMM en paralelo (plataformas servidor e HEDT). O bus é de <strong>256bits</strong>.
+<ul>
+<li><strong>HEDT</strong> (High-End Desktop): Para usuarios profesionais que fan renderizado 3D ou edición de vídeo 8K.</li>
+<li><strong>Servidores</strong>: É o estándar en máquinas que moven bases de datos ou virtualización masiva. <strong>Intel Xeon e AMD EPYC</strong> (estes últimos poden chegar incluso a 8 ou 12 canles de memoria!).</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-overclocking-de-ram-en-estaci%C3%B3ns-de-traballo">4.3 Overclocking de RAM en Estacións de Traballo</h3>
+<h4 id="431-xmp-intel-extreme-memory-profile">4.3.1. XMP (Intel eXtreme Memory Profile)</h4>
+<p>É un estándar de Intel que contén perfís de configuración predefinidos e probados polo fabricante da memoria. Permite que <strong>a placa base axuste automaticamente a frecuencia, voltaxe e timings</strong> por riba das especificacións estándar (JEDEC) para <strong>acadar o máximo rendemento</strong>.</p>
+<p>XMP é de Intel. Porén, os fabricantes de placas base para AMD (como <em>ASUS, Gigabyte ou MSI</em>) levan anos incluíndo tecnoloxías para &quot;ler&quot; eses perfís de Intel. Nas <strong>BIOS de AMD aparece como DOCP, EOCP ou simplemente XMP</strong>.</p>
+<p><strong>Velocidades Comúns com XMP:</strong></p>
+<ul>
+<li>XMP 3000, 3200, 3600, 4000, 4400, 4800 MHz</li>
+</ul>
+<h4 id="432-amd-expo-amd-extreme-memory-profile">4.3.2 AMD EXPO (AMD eXtreme Memory Profile)</h4>
+<p>É a alternativa de <strong>AMD para a arquitectura DDR5</strong>. Funciona exactamente igual que o XMP, pero é un <strong>estándar aberto</strong> e está optimizado especificamente para maximizar a eficiencia e a velocidade nos procesadores AMD Ryzen.</p>
+<ul>
+<li>En <strong>placas AMD</strong>: Podes usar tanto memorias con XMP como con EXPO. A BIOS recoñecerá ambos.</li>
+<li>En <strong>placas Intel</strong>: O soporte para EXPO é menos común pero está <em>empezando a aparecer en actualizacións de BIOS de gama alta</em>. O máis habitual é mercar XMP para Intel.</li>
+</ul>
+<blockquote>
+<p>Nos últimos procesadores con DDR5, JEDEC ten unha postura máis conservadora de <strong>4800Mhz</strong>, e para chetar aos <strong>6000MHz</strong> hai que empregar <strong>AMD Expo</strong> ou <strong>XMP</strong>
+<em>mpte</em>: aínda que a RAM teña este perfil, o <strong>procesador</strong> e o <strong>chipset</strong> teñen que permitir facer este overcloking, por exemplo, <strong>en Intel, por exemplo, os chipsets serie &quot;B&quot; e &quot;Z&quot; permíteno, pero a serie &quot;H&quot; básica adoita estar limitada</strong></p>
+</blockquote>
+<hr>
+<h2 id="5-est%C3%A1ndares-e-organismos-de-regulaci%C3%B3n-de-hardware">5. Estándares e Organismos de Regulación de Hardware</h2>
+<p>A interoperabilidade entre compoñentes de distintos fabricantes é posible grazas a organismos que definen normas técnicas estritas:</p>
+<ul>
+<li>
+<p><strong>JEDEC (Joint Electron Device Engineering Council)</strong>: É o referente para a memoria RAM. Define os estándares físicos (como o número de pins en DIMM ou SO-DIMM) e os eléctricos (frecuencias base, voltaxes e latencias). <strong>Unha memoria &quot;JEDEC&quot; garante que funcionará en calquera placa base</strong> compatible sen configuración previa.</p>
+</li>
+<li>
+<p><strong>IEEE (Institute of Electrical and Electronics Engineers)</strong>: Organización global que estandariza dende arquitecturas de computadores ata protocolos de rede. As súas normas <strong>aseguran que a comunicación entre compoñentes e sistemas</strong> siga regras lóxicas e físicas universais.</p>
+</li>
+<li>
+<p><strong>Consorcios Específicos</strong> (PCI-SIG e USB-IF): Grupos de empresas que desenvolven tecnoloxías concretas:</p>
+<ul>
+<li><strong>PCI-SIG</strong>: Define o bus PCI Express, fundamental para a comunicación de alta velocidade en tarxetas gráficas e unidades NVMe.</li>
+<li><strong>USB-IF</strong>: Xestiona todo o ecosistema USB, definindo conectores (como o USB-C) e velocidades de transferencia.</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Característica</th>
+<th style="text-align:left">Estándar Aberto (ex. JEDEC/RAM)</th>
+<th style="text-align:left">Consorcio con Licenza (ex. HDMI/USB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Acceso á norma</strong></td>
+<td style="text-align:left">Calquera pode ler e implementar a norma sen pagar por ela.</td>
+<td style="text-align:left">Require ser membro do consorcio ou pagar &quot;royalties&quot;.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Fabricación</strong></td>
+<td style="text-align:left">Fomenta unha competencia total entre moitos fabricantes.</td>
+<td style="text-align:left">O control está en mans dun grupo que dita quen pode usar a marca.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Evolución</strong></td>
+<td style="text-align:left">Máis lenta pero moi sólida e compatible.</td>
+<td style="text-align:left">Máis rápida en funcións comerciais (novos logos, cables).</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Se o estándar fose <strong>pechado</strong> e o fabricante decidise deixar de dar soporte ou comezase a cobrar licenzas carísimas polo acceso aos planos técnicos, o técnico atoparíase con que os <strong>módulos de reposto serían moito máis difíciles de atopar</strong> e probablemente moitísimo máis caros, xa que <strong>non habería competencia de terceiros</strong> fabricantes que puidesen replicar esa tecnoloxía de xeito legal.</p>
+</blockquote>
+<h2 id="5-estrutura-f%C3%ADsica-e-empaquetado">5. Estrutura Física e Empaquetado</h2>
+<h3 id="51-dimm-dual-in-line-memory-module">5.1 DIMM (Dual In-line Memory Module)</h3>
+<p><strong>Especificacións Estándar:</strong></p>
+<ul>
+<li><strong>Tamaño:</strong> 133.35 mm × 30 mm (altura estándar)</li>
+<li><strong>Pines:</strong> 288 pines (DDR4/DDR5)</li>
+<li><strong>Altura con disipador:</strong> Até 47 mm (requiere revisión de compatibilidade con coolers)</li>
+<li><strong>Slots na placa base:</strong> Typ. 2-4 (M.2 compatibles en DDR5)</li>
+</ul>
+<h3 id="52-so-dimm-small-outline-dimm">5.2 SO-DIMM (Small Outline DIMM)</h3>
+<p><strong>Para portátiles e sistemas compactos:</strong></p>
+<ul>
+<li><strong>Tamaño:</strong> 69.15 mm × 30 mm</li>
+<li><strong>Pines:</strong> 260 pines (DDR4) ou 262 pines (DDR5)</li>
+<li><strong>Altura:</strong> 7.5-17 mm (máis compacta)</li>
+</ul>
+<h3 id="53-rg-dimm-registered-dimm">5.3 RG-DIMM (Registered DIMM)</h3>
+<p><strong>Para servidores:</strong></p>
+<ul>
+<li><strong>Rexistro de voltaxe:</strong> nos servidores o controlador de memoria é un chip intermedio, que recibe as sinais de petición de memoria e estabilízaas antes de solicitarllas á RAM.</li>
+<li><strong>ECC</strong> bits que permiten detectar e corrixir erros.</li>
+<li><strong>Memoria Persistente</strong>, Tecnoloxías que permiten que os datos da RAM non se borren ao apagar o servidor.</li>
+<li><strong>Compatibilidade:</strong> Non é compatible con placas base de desktop</li>
+</ul>
+<h3 id="54-xerarqu%C3%ADa-de-memoria-die-layout">5.4 Xerarquía de Memoria (Die Layout)</h3>
+<p>No seguinte esquema pode verse como está estruturada a memoria RAM, organización, como se xestiona o control interno da memoria e pines que usa para que cousa .</p>
+<pre class="hljs"><code><div>DIMM (133.35 × 30 mm)
+  ├─ 8-16 Bancos de Memoria
+  │  ├─ Filas (Rows): 16,384 - 65,536
+  │  └─ Columnas (Columns): 1024-2048
+  ├─ Circuitería de Control
+  │  ├─ Controlador de Fila
+  │  ├─ Controlador de Columna
+  │  └─ Circuitería de Refresco
+  └─ Pines de Conexión (288)
+     ├─ Datos (DQ0-DQ63): 64 bits
+     ├─ Enderezo (A0-A17): 18 bits
+     ├─ Control (RAS, CAS, WE, CS)
+     └─ Enerxía (VDD, VSS, VREF)
+</div></code></pre>
+<hr>
+<h2 id="6-procedementos-de-seguridade-espec%C3%ADfica-para-memoria-ram">6. Procedementos de Seguridade Específica para Memoria RAM</h2>
+<h3 id="61-descarga-electrost%C3%A1tica-esd">6.1 Descarga Electrostática (ESD)</h3>
+<p><strong>CRÍTICO: Non tocar ningunha pista de cobre das DIMMs directamente</strong></p>
+<p>Pasos de prevención:</p>
+<ol>
+<li>✅ <strong>Antes de manipular:</strong> Ponte una pulseira antiestática conectada a masa</li>
+<li>✅ <strong>Protección do lugar de traballo:</strong> Usa tapete antiestático conexado</li>
+<li>✅ <strong>Desconexión:</strong> Desconecta a fonte de alimentación antes de abrir o computador</li>
+<li>✅ <strong>Descarga previa:</strong> Toca a estrutura metálica de case antes de coller a DIMM</li>
+<li>✅ <strong>Almacenamento:</strong> Guarda DIMMs en bolsas Faraday ou antiestáticas</li>
+</ol>
+<h3 id="62-seguridade-el%C3%A9ctrica">6.2 Seguridade Eléctrica</h3>
+<ul>
+<li>⚠️ <strong>Non manipular con computador encendido</strong> (risco de curtocircuito ou dano a placa base)</li>
+<li>⚠️ <strong>Desconectar fonte de alimentación</strong> antes de abrir a carcasa</li>
+<li>⚠️ <strong>Desconectar de tomacorrente</strong> (non basta con apagar; hai capacitores na fonte cargados)</li>
+</ul>
+<h3 id="63-procedementos-de-instalaci%C3%B3n-seguros">6.3 Procedementos de Instalación Seguros</h3>
+<ol>
+<li><strong>Desconecta e espera 5 minutos</strong> para dissipación de carga</li>
+<li><strong>Localiza os slots correctos</strong> (consulta manual da placa base)</li>
+<li><strong>Abre plenamente as pestañas laterais</strong> do slot (soan con clic)</li>
+<li><strong>Aliña a muesca na DIMM</strong> co pin central do slot (previne erros)</li>
+<li><strong>Inserta con presión uniforme</strong> en ambos extremos (evita damping lateral)</li>
+<li><strong>Reconnecta e proba</strong> (Comprueba que o BIOS detecta a memoria)</li>
+</ol>
+<h3 id="64-sinais-de-dano-ou-fallo">6.4 Sinais de Dano ou Fallo</h3>
+<ul>
+<li>Ordenador non inicia (beep repetido do speaker)</li>
+<li>Aviso de memoria instalada incorrecto (pantalla verde ou POST fallido)</li>
+<li>Memoria non detectada en BIOS/UEFI</li>
+<li>Erros de corrección ECC ou fallos de integridade</li>
+</ul>
+<p><strong>Solución:</strong> Extrae, limpa os contactos con éter (en lugar ventilado) ou alcohol isopropílico, e reinserta coidadosamente.</p>
+<hr>
+<h2 id="7-configuraci%C3%B3ns-recomendadas">7. Configuracións Recomendadas</h2>
+<table>
+<thead>
+<tr>
+<th>Uso</th>
+<th>Recomendación</th>
+<th>Especificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gaming 1080p/1440p</td>
+<td>16 GB Dual Channel</td>
+<td>DDR5-6000 CL30 EXPO</td>
+</tr>
+<tr>
+<td>Workstation (CAD/3D)</td>
+<td>32 GB Dual Channel</td>
+<td>DDR5-5600 CL36 Intel XMP</td>
+</tr>
+<tr>
+<td>Servidor</td>
+<td>64-128 GB</td>
+<td>DDR5 ECC RG-DIMM</td>
+</tr>
+<tr>
+<td>Portátil Gaming</td>
+<td>32 GB SO-DIMM</td>
+<td>DDR5-5600</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-referencias-t%C3%A9cnicas">8. Referencias Técnicas</h2>
+<ul>
+<li>JEDEC Standard DDR4 (JESD79-4)</li>
+<li>JEDEC Standard DDR5 (JESD79-5)</li>
+<li>Intel XMP Specification v3.0</li>
+<li>AMD EXPOSITION Memory Profile (AGESA 1.0.8.1+)</li>
+</ul>
+<h2 id="9-p%C3%A1xinas-interesantes">9. Páxinas interesantes</h2>
+<ul>
+<li><a href="https://www.crucial.com/">Crucial</a></li>
+<li><a href="https://www.kingston.com/es/memory">Kingston</a></li>
+</ul>
+<hr>
+
+</body>
+</html>

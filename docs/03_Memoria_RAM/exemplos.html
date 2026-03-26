@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exemplos.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="memoria-ram-exemplos-pr%C3%A1cticos">Memoria RAM: Exemplos Prácticos</h1>
+<h2 id="1-c%C3%A1lculo-de-latencia-e-ancho-de-banda">1. Cálculo de Latencia e Ancho de Banda</h2>
+<h3 id="11-exemplo-1-latencia-real-en-ns">1.1 Exemplo 1: Latencia Real en ns</h3>
+<p><strong>Datos:</strong></p>
+<ul>
+<li>Memoria: DDR4-3200 CL16</li>
+<li>Frecuencia: 3200 MHz</li>
+<li>Latencia CAS: 16 ciclos</li>
+</ul>
+<p><strong>Cálculo:</strong>
+$$\text{Latencia (ns)} = \frac{\text{CL}}{f \text{ MHz}} \times 1000 = \frac{16}{3200} \times 1000 = 5 \text{ ns}$$</p>
+<p><strong>Compare con DDR5-6000 CL36:</strong>
+$$\text{Latencia (ns)} = \frac{36}{6000} \times 1000 = 6 \text{ ns}$$</p>
+<p><strong>Conclusión:</strong> A pesar de que DDR5 ten maior CL en valores absolutos, a latencia real en ns é similar ou mellor debido á frecuencia máis alta.</p>
+<hr>
+<h3 id="12-exemplo-2-ancho-de-banda-total">1.2 Exemplo 2: Ancho de Banda Total</h3>
+<p><strong>Datos:</strong></p>
+<ul>
+<li>Memory Rate (MT/s): 3200 MT/s para DDR4-3200</li>
+<li>Canles de Datos: 64 bits = 8 bytes</li>
+<li>Número de Canles: 2 (Dual Channel)</li>
+</ul>
+<p><strong>Cálculo para Canle Simple:</strong>
+$$\text{Ancho de Banda} = \text{MT/s} \times \text{Tamaño de Dato} = 3200 \text{ MT/s} \times 8 \text{ bytes} = 25.6 \text{ GB/s}$$</p>
+<p><strong>Cálculo para Dual Channel:</strong>
+$$\text{Ancho de Banda Total} = 25.6 \text{ GB/s} \times 2 = 51.2 \text{ GB/s}$$</p>
+<p><strong>Comprobación alternativa:</strong>
+$$\text{Ancho de Banda} = \frac{f \text{ MHz}}{1000} \times 2 \times 8 \text{ bytes} \times \text{num_canles}$$
+$$= \frac{3200}{1000} \times 2 \times 8 \times 2 = 51.2 \text{ GB/s}$$</p>
+<hr>
+<h3 id="13-exemplo-3-diferenza-de-rendemento-entre-canles">1.3 Exemplo 3: Diferenza de Rendemento entre Canles</h3>
+<p><strong>Escenario:</strong> Aplicación que require transferencia de datos masiva (p.e., renderizado 3D)</p>
+<p><strong>Configuración Probe 1: Single Channel</strong></p>
+<ul>
+<li>1 × 16 GB DDR4-3200</li>
+<li>Ancho de banda: 25.6 GB/s</li>
+<li>Tempo de transferencia para 1 GB: $\frac{1024 \text{ MB}}{25.6 \text{ GB/s}} = 40 \text{ ms}$</li>
+</ul>
+<p><strong>Configuración Probe 2: Dual Channel</strong></p>
+<ul>
+<li>2 × 8 GB DDR4-3200</li>
+<li>Ancho de banda: 51.2 GB/s</li>
+<li>Tempo de transferencia para 1 GB: $\frac{1024 \text{ MB}}{51.2 \text{ GB/s}} = 20 \text{ ms}$</li>
+</ul>
+<p><strong>Beneficio:</strong> <strong>50% máis rápido</strong> con Dual Channel</p>
+<hr>
+<h2 id="2-comparativa-de-compatibilidade-xmpexpo">2. Comparativa de Compatibilidade XMP/EXPO</h2>
+<h3 id="21-exemplo-selecci%C3%B3n-de-memoria-para-ryzen-7-5800x-socket-am4">2.1 Exemplo: Selección de Memoria para Ryzen 7 5800X (Socket AM4)</h3>
+<p><strong>Situación:</strong> O usuario compra DDR5 XMP para procesador que soporta DDR4.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compatibilidade Hardware</td>
+<td>❌ INCOMPATIBLE (Socket AM4 é DDR4 obrigatorio)</td>
+</tr>
+<tr>
+<td>BIOS Detecta</td>
+<td>Non (slot diferente, pines diferentes)</td>
+</tr>
+<tr>
+<td>Dano Físico</td>
+<td>⚠️ Risco de rotura</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solución Correcta:</strong></p>
+<ul>
+<li>Ryzen 5800X (AM4) → Usar DDR4-3600 com EXPO ou 3200 JEDEC</li>
+</ul>
+<hr>
+<h3 id="22-exemplo-selecci%C3%B3n-de-memoria-para-ryzen-7-7700x-socket-am5">2.2 Exemplo: Selección de Memoria para Ryzen 7 7700X (Socket AM5)</h3>
+<p><strong>Situación:</strong> Usuario quere máximo rendemento con Ryzen 7700X</p>
+<p><strong>Opción 1: DDR5-6000 EXPO (Recomendado)</strong></p>
+<ul>
+<li>Especificacións: CORSAIR VENGEANCE DDR5-6000 CL30</li>
+<li>Precio: €150-180</li>
+<li>BIOS Setting: Activar &quot;EXPO Profile&quot; en UEFI</li>
+<li>Rendemento Esperado: +15-20% vs. JEDEC DDR5-4800</li>
+</ul>
+<p><strong>Opción 2: DDR5-5600 (Alternativa Estable)</strong></p>
+<ul>
+<li>Especificacións: Kingston Fury Beast DDR5-5600</li>
+<li>Precio: €120-150</li>
+<li>BIOS Setting: Manual timing adjustment</li>
+<li>Rendemento Esperado: Estable, similar a DDR5-5600 EXPO</li>
+</ul>
+<p><strong>Recomendación:</strong> Opción 1 (melhor relación prezo-rendemento)</p>
+<hr>
+<h2 id="3-c%C3%A1lculo-de-timing-stack-completo">3. Cálculo de Timing Stack Completo</h2>
+<h3 id="31-exemplo-perfil-xmp-gskill-trident-z5">3.1 Exemplo: Perfil XMP G.Skill Trident Z5</h3>
+<p><strong>Memoria:</strong> G.Skill Trident Z5 DDR5-6000 CL30</p>
+<p><strong>Profile Cargado no BIOS:</strong></p>
+<pre class="hljs"><code><div>Frecuencia:       6000 MHz
+CAS Latency (CL): 30 ciclos
+RAS to CAS (tRCD): 32 ciclos
+RAS Precharge (tRP): 32 ciclos
+RAS Active (tRAS): 72 ciclos
+Command Rate:      1T
+Voltage:           1.25V (DDR5-6000 típico)
+</div></code></pre>
+<p><strong>Cálculo de latencia en ciclos:</strong>
+$$\text{Latencia Total} = CL = 30 \text{ ciclos}$$</p>
+<p><strong>En nanosegundos:</strong>
+$$\text{Latencia (ns)} = \frac{30}{6000} \times 1000 = 5 \text{ ns}$$</p>
+<hr>
+<h3 id="32-exemplo-configuraci%C3%B3n-manual-para-estabilidade">3.2 Exemplo: Configuración Manual para Estabilidade</h3>
+<p><strong>Escenario:</strong> O usuario tenta overclock manual a DDR5-6400 sen perfil XMP</p>
+<p><strong>Pasos:</strong></p>
+<ol>
+<li><strong>Estabelecer frecuencia:</strong> 6400 MHz</li>
+<li><strong>Timings iniciais conservadores:</strong>
+<ul>
+<li>CL: 38 (en lugar de 36)</li>
+<li>tRCD: 36</li>
+<li>tRP: 36</li>
+<li>tRAS: 76</li>
+</ul>
+</li>
+<li><strong>Voltaxe:</strong> 1.35V (máximo seguro para DDR5)</li>
+<li><strong>Proba:</strong> MemTest86 o Cinebench durante 4 horas</li>
+<li><strong>Se fallha:</strong> Reducir frecuencia a 6200 MHz ou aumentar tRCD a 38</li>
+</ol>
+<hr>
+<h2 id="4-impacto-do-dual-channel-en-aplicaci%C3%B3ns-reais">4. Impacto do Dual Channel en Aplicacións Reais</h2>
+<h3 id="41-exemplo-gaming-1440p-ray-tracing">4.1 Exemplo: Gaming (1440p, Ray Tracing)</h3>
+<p><strong>Configuración A: Single Channel</strong></p>
+<pre class="hljs"><code><div>16 GB DDR4-3200 (1 DIMM en Slot A1)
+GPU: RTX 4070
+CPU: Intel Core i5-13600K
+</div></code></pre>
+<p><strong>Configuración B: Dual Channel</strong></p>
+<pre class="hljs"><code><div>16 GB DDR4-3200 (2× 8GB en Slots A1 + B1)
+GPU: RTX 4070
+CPU: Intel Core i5-13600K
+</div></code></pre>
+<p><strong>FPS (Cyberpunk 2077, Ultra Settings, 1440p):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Canle</th>
+<th>FPS Promedio</th>
+<th>Stuttering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single</td>
+<td>65 fps</td>
+<td>Notóreo (1-2 fps drops)</td>
+</tr>
+<tr>
+<td>Dual</td>
+<td>78 fps</td>
+<td>Mínimo (~0.1 fps drops)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Diferenza:</strong> +20% de FPS e eliminación de stuttering</p>
+<hr>
+<h3 id="42-exemplo-renderizado-3d-blender---cycles">4.2 Exemplo: Renderizado 3D (Blender - Cycles)</h3>
+<p><strong>Proxecto:</strong> Renderizado de escena complexa (5000 × 5000 px, Ray Tracing)</p>
+<p><strong>Configuración:</strong></p>
+<pre class="hljs"><code><div>CPU: Ryzen 9 7950X
+Memoria: 32 GB DDR5-6000 EXPO
+GPU: RTX 4090 (renderizado CUDA)
+Tempo Base: 180 segundos
+</div></code></pre>
+<p><strong>Impacto da Velocidade de Memoria:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo de Memoria</th>
+<th>Tempo Render</th>
+<th>Diferenza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DDR4-3200 Single</td>
+<td>210 seg</td>
+<td>+16.7%</td>
+</tr>
+<tr>
+<td>DDR4-3200 Dual</td>
+<td>195 seg</td>
+<td>+8.3%</td>
+</tr>
+<tr>
+<td>DDR5-6000 Dual</td>
+<td>180 seg</td>
+<td>Baseline</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusión:</strong> Dual Channel + frequencia alta = máximo rendemento en workloads CPU-intensivos</p>
+<hr>
+<h2 id="5-diagn%C3%B3stico-de-problemas-de-memoria">5. Diagnóstico de Problemas de Memoria</h2>
+<h3 id="51-exemplo-computador-non-inicia-post-error">5.1 Exemplo: Computador non inicia (POST Error)</h3>
+<p><strong>Síntomas:</strong></p>
+<ul>
+<li>Beep repetido (patrón: 1 longo - 2 curtos)</li>
+<li>Pantalla en negro</li>
+<li>Ningún logo de fabricante</li>
+</ul>
+<p><strong>Diagnóstico e Solución:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Acción</th>
+<th>Resultado Esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Desconecta todo (360 V, ±5 min)</td>
+<td>Descargas electrostáticas disipadas</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Reinserta DIMM coa presión uniforme</td>
+<td>Clips laterais soan</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Proba con 1 DIMM só</td>
+<td>Si arranca, a outra está dañada</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Limpa contactos con alcol isopropílico</td>
+<td>Óxido eliminado</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Reactiva en BIOS (auto-detect)</td>
+<td>BIOS detecta memoria correcta</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="52-exemplo-erros-de-memoria-en-carga-de-so-bsod---windows">5.2 Exemplo: Erros de Memoria en Carga de SO (BSOD - Windows)</h3>
+<p><strong>Mensaxe de Erro:</strong> <code>MEMORY_MANAGEMENT</code> ou <code>KERNEL_MEMORY_INPAGE_ERROR</code></p>
+<p><strong>Causas Posibles:</strong></p>
+<ol>
+<li>XMP/EXPO inestable (overclock fallido)</li>
+<li>Memoria defectuosa (fallo en banco específico)</li>
+<li>Incompatibilidade BIOS/placa base</li>
+</ol>
+<p><strong>Protocolo de Solución:</strong></p>
+<p><strong>Opción A: Desactivar XMP</strong></p>
+<pre class="hljs"><code><div>1. Reinicia e entra en BIOS (Del, F2, F12 segundo fabricante)
+2. Navega a Overclocking → XMP Profile
+3. Cambia a &quot;Disabled&quot; ou &quot;JEDEC&quot;
+4. Garda e reinicia
+5. Si arranca correctamente → XMP era o problema
+</div></code></pre>
+<p><strong>Opción B: MemTest86</strong></p>
+<pre class="hljs"><code><div>1. Descarga MemTest86 (gratuíto en memtest86.com)
+2. Grava en pen drive USB
+3. Arranca desde USB
+4. Executa teste durante 8+ horas
+5. Si hay erros → Memoria defectuosa (RMA/cambio)
+</div></code></pre>
+<hr>
+<h2 id="6-tabla-de-compatibilidade-r%C3%A1pida">6. Tabla de Compatibilidade Rápida</h2>
+<h3 id="61-socket-de-procesador---tipo-de-memoria">6.1 Socket de Procesador - Tipo de Memoria</h3>
+<table>
+<thead>
+<tr>
+<th>Socket</th>
+<th>Xeneración</th>
+<th>Tipo</th>
+<th>Velocidade Estándar</th>
+<th>Canles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LGA1700 (Intel 12-14 Gen)</td>
+<td>12ª-14ª</td>
+<td>DDR5</td>
+<td>4800 MHz</td>
+<td>2</td>
+</tr>
+<tr>
+<td>AM5 (AMD Ryzen 7000+)</td>
+<td>7ª gen+</td>
+<td>DDR5</td>
+<td>4800 MHz</td>
+<td>2</td>
+</tr>
+<tr>
+<td>AM4 (AMD Ryzen 5000)</td>
+<td>5ª gen</td>
+<td>DDR4</td>
+<td>3200 MHz</td>
+<td>2</td>
+</tr>
+<tr>
+<td>TRX50 (Threadripper)</td>
+<td>Threadripper PRO</td>
+<td>DDR5</td>
+<td>5600 MHz</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="7-ferramentas-de-diagn%C3%B3stico">7. Ferramentas de Diagnóstico</h2>
+<p><strong>Recomendadas (Código Aberto/Gratuítas):</strong></p>
+<ul>
+<li><strong>MemTest86+:</strong> Teste de memoria integral (bootable)</li>
+<li><strong>Prime95 Blend Test:</strong> Teste de estabilidade con memoria</li>
+<li><strong>CPU-Z (Memory Tab):</strong> Verificación de velocidade e timing</li>
+<li><strong>Aida64 Memory Benchmark:</strong> Comparativa de ancuro de banda</li>
+</ul>
+
+</body>
+</html>

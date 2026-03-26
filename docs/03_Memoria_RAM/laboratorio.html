@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>laboratorio.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="memoria-ram-laboratorio-pr%C3%A1ctico">Memoria RAM: Laboratorio Práctico</h1>
+<h2 id="1-pr%C3%A1ctica-1-identificaci%C3%B3n-e-an%C3%A1lise-de-memoria-instalada">1. Práctica 1: Identificación e Análise de Memoria Instalada</h2>
+<h3 id="11-obxetivos">1.1 Obxetivos</h3>
+<ul>
+<li>✅ Identificar tipo, capacidade e velocidade de memoria instalada</li>
+<li>✅ Usar ferramentas de diagnóstico para comprobar especificacións</li>
+<li>✅ Validar configuración de Dual Channel</li>
+<li>✅ Documentar toda información en informe</li>
+</ul>
+<h3 id="12-materiais-necesarios">1.2 Materiais Necesarios</h3>
+<ul>
+<li>✅ 1 × Computador con memoria RAM instalada</li>
+<li>✅ Pulseira antiestática (para acceso interno, se é necesario)</li>
+<li>✅ Desparafusador (se se abre a carcasa)</li>
+</ul>
+<h3 id="13-procedementos">1.3 Procedementos</h3>
+<h4 id="paso-1-identificaci%C3%B3n-visual-sen-abrir-carcasa">Paso 1: Identificación Visual (sen abrir carcasa)</h4>
+<p><strong>Tarefa:</strong> Descobre os datos de memoria sen abrir a carcasa</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># En Windows: Abre PowerShell como administrador e executa:</span>
+Get-WmiObject -Class Win32_PhysicalMemory | Format-Table Manufacturer, Capacity, Speed, ConfiguredClockSpeed
+
+<span class="hljs-comment"># En Linux:</span>
+sudo dmidecode --<span class="hljs-built_in">type</span> 17
+<span class="hljs-comment"># ou</span>
+lsmem
+</div></code></pre>
+<p><strong>Responder:</strong></p>
+<ol>
+<li>¿Cantas DIMM están instaladas?</li>
+<li>¿Cal é a marca (Kingston, Corsair, G.Skill, etc.)?</li>
+<li>¿Cal é a capacidade total?</li>
+<li>¿Cal é a velocidade indicada en MHz?</li>
+<li>¿Está configurada en Dual Channel?</li>
+</ol>
+<p><strong>Captura de datos:</strong></p>
+<pre class="hljs"><code><div>Número de DIMs: ___
+Marca: ___
+Capacidade Total: ___
+Velocidade Detectada: ___
+Dual Channel: Sí/Non
+</div></code></pre>
+<hr>
+<h4 id="paso-2-inspeci%C3%B3n-f%C3%ADsica-se-se-abre-a-carcasa">Paso 2: Inspeción Física (se se abre a carcasa)</h4>
+<p>⚠️ <strong>PRECAUCIÓN DE SEGURIDADE:</strong> Antes de abrir:</p>
+<ul>
+<li>Desconecta fonte de alimentación (360° completo)</li>
+<li>Espera 5 minutos</li>
+<li>Ponte pulseira antiestática</li>
+</ul>
+<p><strong>Tarefa:</strong> Verifica físicamente a memoria instalada</p>
+<pre class="hljs"><code><div>Procedementos:
+1. Localiza slots de memoria (usualmente próimo ao procesador)
+2. Observa:
+   ├─ Número de DIMM inseridas
+   ├─ Distancia entre slots (valida se están en slots alternos = Dual Channel)
+   ├─ Presencia de clips laterais pechados (indica correcta instalación)
+   └─ Disipadores de calor (indica memoria gaming ou overclocking)
+
+3. Para cada DIMM, lee a etiqueta:
+   ├─ Marca (Kingston, Corsair, G.Skill, etc.)
+   ├─ Modelo exacto (p.e., FURY Beast DDR5-6000)
+   ├─ Código de produción
+   └─ Voltaxe recomendada (1.2V, 1.25V, etc.)
+
+4. Documenta todo con fotos (se é posible)
+</div></code></pre>
+<hr>
+<h3 id="14-informe-a-completar">1.4 Informe a Completar</h3>
+<p><strong>Nome do Alumno:</strong> ___________________</p>
+<p><strong>Data:</strong> <em><strong>/</strong>/</em>___</p>
+<p><strong>Computador Analizado:</strong> ________________________</p>
+<h4 id="resumo-t%C3%A9cnico">Resumo Técnico:</h4>
+<pre class="hljs"><code><div>Tipo de Memoria:        DDR4 / DDR5
+Capacidade Total:       __ GB
+Número de DIMM:         __
+Megahertz Base (JEDEC): ____ MHz
+Megahertz Actual:       ____ MHz
+Latencia CAS:           __
+Configuración:          Single / Dual Channel
+XMP/EXPO:               Enabled / Disabled
+Marcas Identificadas:   _____________________
+</div></code></pre>
+<h4 id="an%C3%A1lise-comparativo-se-hab%C3%ADa-diferentes-modelos">Análise Comparativo (se había diferentes modelos):</h4>
+<ul>
+<li>¿Están tódalas DIMM do mesmo fabricante?</li>
+<li>¿Son do mesmo modelo exacto?</li>
+<li>¿Funcionan en Dual Channel correctamente?</li>
+</ul>
+<h4 id="conclusiones">Conclusiones:</h4>
+<ol>
+<li>¿A memoria detectada é a que che dixo o cliente?</li>
+<li>¿Está optimizada a configuración (Dual Channel, XMP)?</li>
+<li>¿Require actualización ou reemplazo?</li>
+</ol>
+<hr>
+<hr>
+<h2 id="2-pr%C3%A1ctica-2-diagn%C3%B3stico-de-subsistema-de-memoria-memtest">2. Práctica 2: Diagnóstico de Subsistema de Memoria MemTest</h2>
+<p><strong>Obxectivos:</strong></p>
+<ul>
+<li>Crear medios de arrastre de diagnóstico mediante ferramentas de baixo nivel (<code>dd</code>) e multi-boot (<code>Ventoy</code>).</li>
+<li>Identificar a topoloxía da memoria instalada.</li>
+<li>Interpretar os algoritmos de estrés de <em>MemTest86+</em>.</li>
+</ul>
+<h2 id="1-preparaci%C3%B3n-do-medio-de-arranque-bootable-usb">1. Preparación do Medio de Arranque (Bootable USB)</h2>
+<p>Tes dúas opcións para preparar a túa ferramenta:</p>
+<h3 id="opci%C3%B3n-a-m%C3%A9todo-ventoy-recomendado-para-t%C3%A9cnicos">Opción A: Método Ventoy (Recomendado para técnicos)</h3>
+<ol>
+<li>Descarga a ISO de <strong>MemTest86+</strong> (v7.0 ou superior) dende <a href="https://www.memtest.org/">memtest.org</a>.</li>
+<li>Insire o teu pendrive con <strong>Ventoy</strong> xa instalado.</li>
+<li>Copia o ficheiro <code>.iso</code> directamente á raíz do pendrive. Ao arrincar o PC, selecciona a ISO no menú de Ventoy.</li>
+</ol>
+<h3 id="opci%C3%B3n-b-m%C3%A9todo-dd-unixlinux-nativo">Opción B: Método <code>dd</code> (Unix/Linux Nativo)</h3>
+<p>Se estás nunha terminal de Linux, usa o comando de copia de bloques. <strong>Coidado:</strong> identifica correctamente a túa unidade con <code>lsblk</code> para non borrar o disco duro.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Supoñendo que /dev/sdX é o teu pendrive</span>
+sudo dd <span class="hljs-keyword">if</span>=mt86plus_64.iso of=/dev/sdX bs=4M status=progress oflag=sync
+</div></code></pre>
+<hr>
+<h2 id="2-procedemento-de-testeo">2. Procedemento de Testeo</h2>
+<h3 id="fase-i-identificaci%C3%B3n-do-hardware">Fase I: Identificación do Hardware</h3>
+<p>Arranca o equipo dende o USB e, antes de que o test leve moito tempo, observa a pantalla principal e completa:</p>
+<ul>
+<li><strong>Arquitectura do Procesador:</strong> __________________________</li>
+<li><strong>Capacidade Total de RAM:</strong> ___________________________</li>
+<li><strong>Velocidade (MT/s) e Latencia CAS:</strong> ___________________</li>
+<li><strong>Configuración de Canles (Single/Dual/Quad):</strong> __________</li>
+<li><strong>Rango de enderezos de memoria (Memory Range):</strong> _________</li>
+<li><strong>Tamaño caché L1 e velocidade:</strong> _________</li>
+<li><strong>Tamaño caché L2 e velocidade:</strong> ________</li>
+<li><strong>Tamaño caché L3 e velocidade:</strong> _________</li>
+</ul>
+<h3 id="fase-ii-execuci%C3%B3n-de-algoritmos">Fase II: Execución de Algoritmos</h3>
+<p>O MemTest86+ executa unha serie de probas. Identifica e explica brevemente que busca detectar cada unha destas:</p>
+<ol>
+<li><strong>Test 5 [Moving inversions, 8-bit pattern]:</strong></li>
+<li><strong>Test 7 [Block move, 64 moves]:</strong></li>
+<li><strong>Test 13 [Hammer Test]:</strong></li>
+</ol>
+<h3 id="fase-iii-interpretaci%C3%B3n-de-erros-simulaci%C3%B3n-t%C3%A9cnica">Fase III: Interpretación de Erros (Simulación Técnica)</h3>
+<p>Imaxina que tras 2 horas de test, o software amosa a seguinte liña en vermello:
+<code>Failing Address: 0001A4C28F34 - 420.5 MB | Good: ffffffff | Bad: ffefffff</code></p>
+<p><strong>Responde:</strong></p>
+<ol>
+<li>¿En que módulo físico (slot) cres que reside o erro se o sistema ten 2 módulos de 8GB en Dual Channel?</li>
+<li>¿Cantos bits fallaron exactamente nesa lectura? (Convirte o valor <em>Good</em> e <em>Bad</em> a binario se é necesario).</li>
+<li>¿Que diferenza existe entre un erro detectado nunha pasada (Pass) e un erro que só aparece tras varias horas de test?</li>
+</ol>
+<hr>
+<h3 id="3-informe-a-completar-e-entregar-na-aula-virtual">3. Informe a Completar e entregar na Aula virtual</h3>
+<p><strong>Nome do Alumno:</strong> ___________________</p>
+<p><strong>Data:</strong> <em><strong>/</strong>/</em>___</p>
+<p><strong>Hardware Testeado:</strong> ________________________</p>
+<h4 id="resultados-de-testes">Resultados de Testes:</h4>
+<p><strong>MemTest86+ Bootable:</strong></p>
+<ul>
+<li>Duración do test: _____ horas</li>
+<li>Erroress detectados: _____ (0 = OK)</li>
+<li>Tipo de memoria: _____</li>
+<li>Velocidade detectada: _____ MHz</li>
+</ul>
+<ul>
+<li><strong>Arquitectura do Procesador:</strong> __________________________</li>
+<li><strong>Capacidade Total de RAM:</strong> ___________________________</li>
+<li><strong>Velocidade (MT/s) e Latencia CAS:</strong> ___________________</li>
+<li><strong>Configuración de Canles (Single/Dual/Quad):</strong> __________</li>
+<li><strong>Rango de enderezos de memoria (Memory Range):</strong> _________</li>
+<li><strong>Tamaño caché L1 e velocidade:</strong> _________</li>
+<li><strong>Tamaño caché L2 e velocidade:</strong> ________</li>
+<li><strong>Tamaño caché L3 e velocidade:</strong> _________</li>
+</ul>
+<h4 id="conclusi%C3%B3ns">Conclusións:</h4>
+<ol>
+<li>A memoria pasou tódolos tests?</li>
+<li>Hai problemas de estabilidade?</li>
+<li>Tes algunha recomendacións para optimización (XMP, timings)?</li>
+<li>Require a memoria mantenimento ou reemplazo?</li>
+</ol>
+<hr>
+
+</body>
+</html>
