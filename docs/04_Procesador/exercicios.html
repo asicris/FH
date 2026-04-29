@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exercicios.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="exercicios-microprocesadores">Exercicios microprocesadores</h1>
+<h2 id="exercicio-1-an%C3%A1lise-comparativa-de-microprocesadores-arquitectura-intel-core-ultra">Exercicio 1: Análise Comparativa de Microprocesadores (Arquitectura Intel Core Ultra)</h2>
+<p><strong>Obxectivo:</strong> Identificar as diferenzas técnicas e de rendemento entre dous modelos da mesma xeración para comprender a relación entre o custo e as capacidades do hardware.</p>
+<p><strong>Instrucións:</strong></p>
+<ol>
+<li>Busca as especificacións técnicas oficiais (Intel ARK) ou en tendas especializadas para os modelos <strong>Intel Core Ultra 5 225</strong> e <strong>Intel Core Ultra 9 285K</strong>.</li>
+<li>Completa a táboa seguinte cos datos correspondentes.</li>
+<li>Responde ás preguntas de análise que figuran ao final.</li>
+</ol>
+<h2 id="t%C3%A1boa-comparativa">Táboa Comparativa</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Característica</th>
+<th style="text-align:left">Core Ultra 5 225</th>
+<th style="text-align:left">Core Ultra 9 285K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Núcleos Totais (P-Cores + E-Cores)</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Frecuencia Turbo Máxima</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Capacidade de Overclocking</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Uso Ideal / Perfil de Usuario</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Prezo Aproximado (PVP)</strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="preguntas-de-an%C3%A1lise">Preguntas de Análise</h2>
+<ol>
+<li><strong>Eficiencia vs Potencia:</strong> Explica por que o Core Ultra 9 ten 16 núcleos de eficiencia (E-Cores) mentres que o Ultra 5 só ten 4. En que tipo de tarefas de ASIR notaríamos máis esta diferenza?</li>
+<li><strong>O factor &quot;K&quot;:</strong> Que significa a letra &quot;K&quot; no modelo 285K? Que compoñente adicional do PC debemos escoller con máis coidado se montamos este procesador en comparación co 225?</li>
+<li><strong>Relación custo-rendemento:</strong> O prezo do Ultra 9 é máis do triplo que o do Ultra 5. Cres que para un posto de traballo de administración de sistemas básico (ofimática e SSH) paga a pena o investimento? Xustifica a resposta.</li>
+</ol>
+<h3 id="exercicio-2-%22o-consultor-de-sistemas%22-presuposto-e-selecci%C3%B3n">Exercicio 2: &quot;O Consultor de Sistemas&quot; (Presuposto e Selección)</h3>
+<p><strong>Obxectivo:</strong> Aprender a equilibrar o custo do procesador co resto dos compoñentes e as necesidades do cliente.</p>
+<p><strong>Enunciado:</strong>
+Unha pequena academia de deseño gráfico necesita renovar 3 postos de traballo. Teñen un orzamento de <strong>450€ por cada torre</strong> (sen monitor). O software principal que usan é Adobe Photoshop e Illustrator.
+Tes que escoller entre estas dúas configuracións e xustificar cal é mellor para o cliente:</p>
+<ul>
+<li><strong>Opción A:</strong> Procesador <strong>Intel Core Ultra 9 285K</strong> (580€) + Placa base básica + 8GB RAM.</li>
+<li><strong>Opción B:</strong> Procesador <strong>AMD Ryzen 5 7600</strong> (200€) + Placa base media + 32GB RAM + Disco SSD NVMe.</li>
+</ul>
+<p><strong>Preguntas para o alumno:</strong></p>
+<ol>
+<li>É viable a Opción A? Por que?</li>
+<li>Por que para deseño gráfico é mellor a Opción B a pesares de ter un procesador máis &quot;frouxo&quot;?</li>
+<li>Que sufixo ten o procesador de AMD e que significa a nivel de gráficos integrados?</li>
+</ol>
+<h3 id="exercicio-3-%22investigaci%C3%B3n-forense-no-terminal%22-linuxwindows">Exercicio 3: &quot;Investigación Forense no Terminal&quot; (Linux/Windows)</h3>
+<p><strong>Obxectivo:</strong> Familiarizarse coas ferramentas de diagnóstico do Sistema Operativo.</p>
+<p><strong>Enunciado:</strong>
+Accede a un equipo con <strong>Ubuntu Linux</strong> (pode ser unha máquina virtual) e executa os comandos necesarios para cubrir a seguinte ficha técnica do procesador real que estás a usar, <strong>captura pantalla da saída de cada un dos comandos e da a resposta ao que se pregunta</strong>:</p>
+<ol>
+<li><strong>Modelo exacto:</strong> (Comando: <code>lscpu &quot;</code>)</li>
+<li><strong>Arquitectura:</strong> (¿É x86_64 ou ARM?)</li>
+<li><strong>Banderas (Flags):</strong> Busca se o teu procesador soporta <strong>VT-x</strong> ou <strong>AMD-V</strong> (necesario para virtualizar). (Comando: <code>grep -E 'vmx|svm' /proc/cpuinfo</code>)</li>
+<li><strong>Velocidade en tempo real:</strong> Executa o comando <code>watch -n 1 &quot;grep MHz /proc/cpuinfo&quot;</code> e abre varias pestanas no navegador. Que observas que lle pasa á frecuencia dos núcleos?</li>
+</ol>
+<hr>
+<h3 id="exercicio-4-%22interpretaci%C3%B3n-de-sufixos-e-sockets%22-matching">Exercicio 4: &quot;Interpretación de Sufixos e Sockets&quot; (Matching)</h3>
+<p><strong>Obxectivo:</strong> Memorizar a nomenclatura técnica para evitar erros de compra/montaxe.</p>
+<p><strong>Enunciado:</strong>
+Une cada procesador coa súa característica de montaxe ou uso principal:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Procesador</th>
+<th style="text-align:left">Característica / Sufixo / Socket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1. Intel Core i7-14700<strong>F</strong></td>
+<td style="text-align:left">A. Soldado á placa (BGA), portátil ultra-fino.</td>
+</tr>
+<tr>
+<td style="text-align:left">2. AMD Ryzen 7 8840<strong>U</strong></td>
+<td style="text-align:left">B. Requírese tarxeta gráfica dedicada obrigatoriamente.</td>
+</tr>
+<tr>
+<td style="text-align:left">3. Intel Core Ultra 7 <strong>155H</strong></td>
+<td style="text-align:left">C. Socket AM5, deseño de chiplets.</td>
+</tr>
+<tr>
+<td style="text-align:left">4. AMD Ryzen 9 <strong>7950X</strong></td>
+<td style="text-align:left">D. Alto rendemento en portátil, moito consumo.</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

@@ -1,543 +1,184 @@
-# Procesador: Fundamentos Técnicos
+# Microprocesadores 
 
-## Definición Técnica
+## 1. Definición e Fundamentos Técnicos
 
-O **Procesador (CPU - Central Processing Unit)** é o "cerebro" do computador. É un circuíto integrado que executa as instrucións dos programas, realizando operacións lóxicas e aritméticas a velocidades extremadamente altas. Funciona realizando ciclos de lectura-decodificación-execución (ciclo de Fetch-Decode-Execute) coordinado polo reloxo do sistema.
+O **Microprocesador (CPU)** é o circuíto integrado central que actúa como o "cerebro" do sistema. A súa función é executar instrucións mediante operacións lóxicas e aritméticas a velocidades de nanosegundos.
 
-### Características Principais
+### 1.1. O Ciclo de Vida da Instrución
 
-- **Arquitectura de Cores:** Un procesador moderno pode ter múltiples núcleos (cores) que executan instrucións en paralelo
-- **Frecuencia de Reloxo:** Medida en GHz (Gigahertzios), indica cantas operacións por segundo pode realizar
-- **Caché:** Memoria ultrarápida integrada no procesador para acceso rápido aos datos máis frecuentemente usados
-- **Nanómetros (nm):** Referencia ao tamaño dos transistores; menor tamaño = máis transistores, máis velocidade, menos consumo
+O funcionamento baséase no ciclo **Fetch-Decode-Execute**, coordinado polo reloxo do sistema:
 
----
+1.**Fetch (Lectura):** Captura a instrución dende a memoria.
+2.**Decode (Decodificación):** Traduce a instrución en sinais eléctricos.
+3.**Execute (Execución):** Realiza a operación a través da ALU (Unidade Aritmético-Lóxica).
 
-## 1. Características Máis Importantes do Procesador
+### 1.2. Arquitecturas: CISC vs RISC
 
-### 1.1 Número de Cores (Núcleos)
-
-**Concepto:** Cada core é un executador independente de instrucións.
-
-- **Mono-core (1 core):** Histórico (Intel Pentium 4). HOX: Non existen máis.
-- **Multi-core (2-8 cores):** Portátiles e PCs estándar actuais
-- **Many-core (8-128+ cores):** Workstations, servidores e procesadores HEDT
-
-**Exemplo:**
-- Intel Core Ultra 5 135U: **10 cores** (6 P-cores + 4 E-cores, veremos máis adiante)
-- AMD Ryzen 7 7800X3D: **8 cores**
-- Intel Xeon Platinum 8592+: **60 cores** (para servidores)
-
-### 1.2 Frequency Threads (Fíos de Execución)
-
-**Concepto:** Un core pode executar moitos "fíos" de forma simulada mediante **Hyperthreading** (Intel) ou **SMT** (AMD - Simultaneous Multithreading).
-
-**Relación cores/threads:**
-- Cada core tradicionalmente = 1 thread
-- Con Hyperthreading/SMT: Cada core = 2 threads
-
-**Exemplo:**
-- Intel Core i7-13700K: **12 cores = 20 threads** (8 P-cores cOn 2 threads cada unha + 4 E-cores con 1 thread cada una)
-- AMD Ryzen 5 7600X: **6 cores = 12 threads** (cada core cOn 2 threads)
-
-### 1.3 Clock Speed (Velocidade Base e Turbo)
-
-**Velocidade Base:** Frecuencia garantida en todas as condicións
-- Exemplo: 2.4 GHz
-
-**Velocidade Turbo (Boost):** Frecuencia máxima que pode alcanzar temporalmente se a térmica o permite
-- Exemplo: 5.6 GHz (Intel Base Clock Boost - BLCK)
-
-**Relación:** Máis GHz = máis instrucións por segundo, pero depende da arquitectura e do número de cores.
-
-### 1.4 Caché
-
-**L1 Cache:** Máis pequena, máis rápida (32 KB por core, típicamente)
-- **Latencia:** ~2-3 ciclos de reloxo
-
-**L2 Cache:** Intermediate (256 KB-512 KB por core)
-- **Latencia:** ~10-20 ciclos
-
-**L3 Cache:** Máis grande, máis lenta (8 MB-32 MB, compartida entre cores)
-- **Latencia:** ~40-60 ciclos
-
-> **Punto técnico:** A caché é crucial porque axuda o procesador a evitar ir continuamente á RAM. Se os datos están en caché, a execución é moito máis rápida.
-
-### 1.5 Proceso de Fabricación (Nanómetros)
-
-*Definición:** O tamaño físico dos transistores no chip.
-
-- **7 nm:** Intel Core Ultra, AMD Ryzen 7000 (2022)
-- **5 nm:** Apple M-series, NVIDIA H100
-- **3 nm:** Intel Arrow Lake, TSMC next-gen (2024+)
-- **Menores nm = máis transistores, máis velocidade, menos consumo enerxético**
-
-**Comparativa simples:**
-- Un Intel Pentium 4 (130 nm, 2000) tiña 42 millóns de transistores
-- Un Intel Core i9 (7 nm, 2023) ten ~19 mil millóns de transistores
+* **CISC (Complex Instruction Set Computer):** Instrucións complexas e potentes. É a base da **arquitectura x86** (Intel/AMD) en PCs e servidores.
+* **RISC (Reduced Instruction Set Computer):** Instrucións simples e ultra-rápidas. É a base da **arquitectura ARM** (móbiles, Apple M-Series e Qualcomm Snapdragon X), destacando pola súa eficiencia enerxética.
 
 ---
 
-## 2. Evolución Simples dos Procesadores
+## 2. Características Físicas e Estruturais
 
-### 2.1 Era Intel (1970s-1990s)
+### 2.1. Conexión e Sockets
 
-| Ano | Procesador | Velocidade | Transistores | Tecnoloxía |
-|-----|-------------|-----------|--------------|-----------|
-| 1974 | Intel 4004 | 108 kHz | 2,300 | 10 µm |
-| 1985 | Intel 386 | 16-25 MHz | 275,000 | 1 µm |
-| 1993 | Intel Pentium | 60-120 MHz | 3.1M | 0.8 µm |
-| 2000 | Intel Pentium 4 | 1.3-2 GHz | 42M | 180 nm |
+O **socket** é a interface física entre o procesador e a placa base:
 
-### 2.2 Era Multi-Core (2000s)
+* **LGA :** Os pins están no socket da placa base. Estándar en Intel e nos novos AMD (AM5). Reduce o risco de danar o CPU.
+* **PGA :** Os pins están no propio procesador. Tradicional en AMD (AM4).
+* **BGA :** Soldado directamente á placa mediante bólas de estaño. Común en portátiles, consolas e SoCs (*System on Chip*).
 
-- **2006:** Intel Core Duo (2 cores)
-- **2006:** AMD Athlon 64 X2 (2 cores)
-- **2007:** Intel Core 2 Quad (4 cores)
 
-### 2.3 Era Moderna (2010s-2020s)
+### 2.2. Xerarquía de Memoria Caché
 
-**Intel:**
-- Core i3/i5/i7 (4-10 cores)
-- Xeon (servidores, até 60+ cores)
+Memoria ultra-rápida que evita as esperas pola RAM:
 
-**AMD Ryzen:**
-- Ryzen 5/7/9 (6-16 cores)
-- EPYC (servidores, até 128 cores)
-
-### 2.4 Era da Heterogeneidad (2020s-Actualidade)
-
-Procesadores cOn núcleos de **diferentes tipos**:
-
-- **P-cores (Performance cores):** Máis rápidos, máis consumo (para tarefas pesadas)
-- **E-cores (Efficiency cores):** Máis lentos, menos consumo (para tarefas en background)
-
-**Exemplos:**
-- Intel Core i9-14900KS: 8 P-cores + 16 E-cores
-- Apple M3: 8 P-cores + 2-6 E-cores (segundo modelo)
+* **L1:** Moi pequena e a máis rápida. Integrada en cada núcleo.
+* **L2:** Intermedia en velocidade e capacidade.
+* **L3:** A máis grande e lenta da xerarquía, compartida entre todos os núcleos. É vital en tarefas de gaming e renderizado.
 
 ---
 
-## 3. Marcas Máis Relevantes Actualmente
+## 3. O Paradigma Moderno: CPU, GPU e NPU
 
-### 3.1 Intel
+Os procesadores actuais son **heteroxéneos**, delegando tarefas en aceleradores específicos:
 
-**Rangos actuais (2024):**
+1.**CPU :** Poucos núcleos moi potentes. Ideal para o **Sistema Operativo** e a lóxica de control complexa (*Single-Core*).
+2.**GPU (Paralelo):** Millares de núcleos simples. Especializado en **matemáticas vectoriais, gráficos, vídeo** e cálculo masivo.
+3.**NPU (Neural Processing Unit):** Acelerador especializado en multiplicar matrices de baixa precisión (tensores). É fundamental para a **IA en local**, permitindo tarefas como o desenfoque de fondos en vídeo ou tradución instantánea con consumo mínimo. Os procesadores modernos con NPU son :
 
-| Gama | Modelo | Cores/Threads | Uso |
-|------|--------|----------------|-----|
-| **Ultra-Básica** | Core Ultra 5 | 10 cores | Ofimática, streaming |
-| **Básica** | Core i5 | 6-10 cores | Gaming casual, webs |
-| **Media** | Core i7 | 8-12 cores | Gaming, editing |
-| **Alta** | Core i9 | 14-24 cores | Renderizado, IA |
-| **Servidor** | Xeon | 10-60 cores | Datacenters |
+* **Intel** identifíca os procesadores con IA na serie **Core Ultra**
+* **AMD** identifícaos na serie **Ryzen AI** (7040/8040 en diante).
+* **Snapdragon** - **X Elite**: Todos os modelos desta gama teñen unha NPU dedicada denominada Qualcomm Hexagon. **X Plus**: Tamén inclúen NPU de alto rendemento. En móbiles **Snapdragon 8 Gen X**
 
-**Arquitetura:** Intel 7, Intel 4, Intel 20A (futuro)
-
-### 3.2 AMD
-
-**Rangos actuais (2024):**
-
-| Gama | Modelo | Cores/Threads | Uso |
-|------|--------|----------------|-----|
-| **Básica** | Ryzen 5 | 5-6 cores | Ofimática, gaming casual |
-| **Media** | Ryzen 7 | 8-12 cores | Gaming, workstation |
-| **Alta** | Ryzen 9 | 12-16 cores | Renderizado, IA |
-| **HEDT** | Ryzen Threadripper | 24-96 cores | VFX, CAD masivo |
-| **Servidor** | EPYC | 12-128 cores | Cloud, AI training |
-
-**Arquitectura:** Zen 5, Zen 5c (2024)
-
-### 3.3 Apple Silicon
-
-**Non só para Macs:**
-- M3, M3 Pro, M3 Max
-- **Características:** Arquitectura ARM, núcleos heteroxéneos, GPU integrada de alto rendemento
-- **Uso:** MacBooks, Mac Studios
-
-### 3.4 Outros Fabricantes Importantes
-
-- **Qualcomm:** Snapdragon (móviles, tablets)
-- **ARM (Holdings):** Arquitectura aberta (non fabrica, licencia)
-- **NVIDIA:** Grace (servidores), Orin (IA/coches autónomos)
 
 ---
 
-## 4. Procesadores de Portátiles vs. Sobremesa
+## 4. Intel vs AMD: Evolución e Rivalidade
 
-### 4.1 Diferencias Principais
+### 4.1. Perspectiva Histórica
 
-| Aspecto | Sobremesa | Portátil |
-|--------|----------|----------|
-| **Consumo (TDP)** | 65-250W | 15-55W (típicamente) |
-| **Velocidad Base** | 3.5-4.5 GHz | 2.5-4.0 GHz |
-| **Velocidad Turbo** | Até 5.8 GHz | Até 4.5-5.0 GHz |
-| **Cores** | 6-24+ | 4-10 |
-| **Socket** | Intel LGA1400, AM5 | BGA (soldado a placa base) |
-| **Extraíble** | Sí | Non (está soldado) |
-| **Refrigeración** | Ventiladores robustos | Sistemas pasivos/activos limitados |
+* **1980s-90s:** Hexemonía de **Intel** coas familias **x86 e Pentium**.
+* **2000s:** AMD lanza o Athlon 64, superando a Intel en 64 bits. Intel responde coa exitosa arquitectura **Core 2 Duo**.
+* **2017-Actualidade:** AMD revoluciona o mercado co deseño de *chiplets* nos **Ryzen**, forzando a Intel a innovar coa **arquitectura híbrida** (P-Cores de rendemento e E-Cores de eficiencia).
 
-### 4.2 Características que Debe Ter un Procesador de Portátil
+### 4.2. Comparativa de Fabricantes: Intel, AMD, Qualcomm e NVIDIA
 
-✅ **Consumo Enerxético Baixo (15-55W TDP):**
-- Decisivo para autonomía da batería
+| Aspecto | **Intel** | **AMD** | **Snapdragon (Qualcomm)** | **NVIDIA** |
+| :--- | :--- | :--- | :--- | :--- |
+| **Arquitectura** | **Híbrida** (P-Cores + E-Cores). Baseada en x86. | **Chiplets** (MCM). Énfase en Zen e Zen-c (x86). | **ARM** (Kryo/Oryon). Arquitectura RISC ultra-eficiente. | **ARM + GPU**. Arquitectura Grace (CPU) e Hopper/Blackwell (GPU). |
+| **Punto Forte** | Mellor rendemento en *single-core* e ecosistema de software maduro. | Mellor relación núcleos/prezo e gran eficiencia grazas aos chiplets. | Autonomía de batería extrema e NPUs líderes para IA en portátiles. | Liderazgo absoluto en IA, centros de datos e procesamento paralelo (GPU). |
+| **Socket / Montaxe** | **LGA** (Pins na placa). Cambia cada 2 xeracións aprox. | **AM5 (LGA)**. Moi duradeiro (soporte por moitos anos). | **BGA** (Soldado). Non intercambiable, integrado en SoC. | **BGA ou Propios**. Deseños integrados para servidores e IA. |
+| **IA (NPU)** | **Intel AI Boost** (integrada en Core Ultra). | **Ryzen AI** (tecnoloxía XDNA). | **Hexagon NPU** (Líder actual en TOPs para Windows). | **Tensor Cores** (Líder en adestramento de IA masiva). |
+| **Uso Ideal** | Gaming, estacións de traballo e empresa estándar. | Gaming (3D V-Cache), servidores (EPYC) e multitarea. | Ultraportátiles (Always Connected PCs) e móbiles. | Supercomputación, adestramento de LLMs e Cloud. |
 
-✅ **Gráficos Integrados:**
-- Non necesita tarxeta gráfica discreta (facilita ultraportátiles)
+**Outros fabricantes:**
 
-✅ **Thermal Throttling Controlado:**
-- O procesador redúce a velocidad se se sobrecalienta, pero sen apagarse
+| Fabricante | Que fabrica principalmente? | Descrición e Enfoque |
+| :--- | :--- | :--- |
+| **Samsung** | Procesadores Exynos para móbiles e fabricación para terceiros. | Ademais de deseñar os seus propios chips para móbiles, é un dos poucos no mundo con **fundicións propias** (fábricas) capaces de crear chips en procesos avanzados de 3nm e 4nm. |
+| **TSMC** | Non deseña, pero **fabrica** para case todos os anteriores (Apple, AMD, NVIDIA). | Aínda que non vende procesadores coa súa marca, é a empresa máis crítica: sen as súas fábricas en Taiwán, o 90% dos procesadores avanzados do mundo non existirían. |
+| **ARM Holdings** | Deseña a **arquitectura** e as licenzas, pero non fabrica chips físicos. | É a empresa que "debuxa os planos". Apple, Qualcomm ou Samsung páganlle por usar a súa arquitectura RISC, que é a base de case tódolos procesadores de móbiles e portátiles de baixo consumo actuais. |
 
-✅ **Arquitectura Eficiente (P+E cores):**
-- P-cores para xogos/edición
-- E-cores para tarefas correntes
+**En resumo:**
 
-✅ **Exemplo Intel Core Ultra 5 135U:**
-- 10 cores (6P + 4E), 2.6-5.0 GHz
-- TDP: 15W até 57W (depende da xunta térmica)
-- GPU Intel Graphics
+* **Deseñadores "Fabless":** Empresas como **AMD, Apple ou NVIDIA** que deseñan os chips pero non teñen fábricas propias; mándanos fabricar a TSMC ou Samsung.
+* **Fabricantes Integrados (IDM):** **Intel** é un dos poucos que aínda deseña e fabrica os seus propios chips nas súas propias instalacións (aínda que recentemente comezou a externalizar algunhas partes a TSMC).
+* **Arquitectura:** O mercado divídese hoxe entre o mundo **x86 (Intel/AMD)**, onde prima a compatibilidade de software de escritorio, e o mundo **ARM (Apple/Qualcomm)**, onde prima a autonomía e a integración.
 
----
+### 5.2 Recomendacións procesador segundo finalidade do PC
 
-## 5. Procesadores Relevantes Actualmente (Exemplos Prácticos)
-
-### 5.1 Gaming e Rendimiento Puro
-
-| Procesador | Cores/TDP | Prezo Aprox. | Uso Ideal |
-|-----------|-----------|-------------|----------|
-| **Intel Core i9-14900KS** | 24 cores (8P+16E) / 150W | €600-700 | Renderizado, streaming, games 4K |
-| **AMD Ryzen 9 7950X3D** | 16 cores / 162W | €450-550 | Renderizado 3D, modelaxe |
-| **Intel Core i7-14700K** | 20 cores (8P+12E) / 125W | €300-400 | Gaming 1440p, editing |
-
-### 5.2 Portátiles Modernos
-
-| Procesador | TDP | Batería | Uso |
-|-----------|-----|---------|-----|
-| **Intel Core Ultra i7-165U** | 28W | 12-15 horas | Ultraportátil, ofimática |
-| **Apple M3** | 8W-25W | 16-18 horas | MacBook Pro/Air |
-| **AMD Ryzen 7 8840HS** | 35-55W | 8-10 horas | Portátil gaming |
-
-### 5.3 Servidor e Datacenters
-
-| Procesador | Cores | Uso |
-|-----------|-------|-----|
-| **Intel Xeon Platinum 8592+** | 60 cores | Cloud, virtualización masiva |
-| **AMD EPYC 9755** | 128 cores | AI training, big data |
-| **ARM-based Ampere Altra** | 80 cores | Servidores low-cost |
-
-### 5.4 IA e Machine Learning
-
-| Procesador | GPU Dedicada | TDP | Uso |
-|-----------|-------------|-----|-----|
-| **NVIDIA H200** | Hopper | 700W | Training de LLMs (GPT, Claude) |
-| **Intel Gaudi3** | Si | 600W | Inferencia IA a escala |
-| **AMD MI325X** | CDNA3 | 850W | IA empresarial |
+| Perfil | Fabricantes Clave | Recomendación Técnica |
+| :--- | :--- | :--- |
+| **Ofimática / Home Office** | Intel, AMD | Intel i3 ou Ryzen 3. Abondo para tarefas web. |
+| **Sistemas / Virtualización** | AMD, Intel | **Ryzen 7 / Core i7**. Necesitas moitos fíos (Threads) para VMs. |
+| **Gaming de Alto Nivel** | AMD | **Ryzen 7 7800X3D** (pola súa memoria 3D V-Cache). |
+| **Portabilidade Extrema** | Apple, Qualcomm | **Apple M3 / Snapdragon X Elite** (Arquitectura ARM). |
+| **Servidores / Cloud** | Intel, AMD, NVIDIA | **Xeon, EPYC ou NVIDIA Grace**. Soporte para RAM ECC. |
 
 ---
 
-## 6. AMD vs Intel: Breve Historia e Actualidade
+## 6. Que debo mirar á hora de mercar un ordenador? (En relación ao procesador)
 
-### 6.1 A Rivalidade Histórica
+Se vas mercar un equipo, non te fixes só no nome da gama (i5, Ryzen 7...). O máis importante é saber ler a "matrícula" do procesador. Mira estes catro puntos clave:
 
-**1980s-1990s: Hegemonía Intel**
-- Intel dominaba cOn Pentium
-- AMD era a alternativa máis barata cOn AMDs similares
+### 1. A Xeración (Un factor determinante)
 
-**2000s: Ascenso de AMD**
-- AMD lanza Athlon 64 (competitivo)
-- Intel recupera con Core 2 Duo
+A arquitectura mellora cada ano. Un procesador de gama media actual adoita ser máis potente que un de gama alta de hai 4 anos.
 
-**2010s: Era Intel**
-- Core i3/i5/i7 dominan completamente
-- AMD en segundo plano cOn A-series mediocres
+* **En Intel:** O primeiro ou os dous primeiros números tras o guión indican a xeración.
+  * *Exemplo:* i7-**14**700K (Xeración 14). Un i5-**14**400 é superior a un i7-**11**700.
+* **En AMD:** O primeiro número indica a serie/xeración (aínda que AMD cambiou a nomenclatura recentemente, a regra xeral mantense).
+  * *Exemplo:* Ryzen 7 **7**800X (Serie 7000, arquitectura Zen 4). Un Ryzen 5 **7**600 adoita render mellor que un Ryzen 9 **3**900.
 
-**2020s: Renacimiento AMD**
-- Ryzen 1000 (2017) revoluciona a industria
-- Arquitectura Zen 3/4/5 gana en power-per-watt (W/watios)
-- Intel pierde cuota de mercado
+### 2. O Sufixo (U|H|K|X...)(Para que serve ese procesador?)
 
-### 6.2 Estat Actual (2024)
+A letra ao final do modelo indica o escenario para o que foi deseñado:
 
-| Aspecto | Intel | AMD |
-|--------|-------|-----|
-| **Domicilio HQ** | Santa Clara, California | Austin, Texas |
-| **Arquitectura** | Intel 7/4nm (7 nm non oficial) | Zen 5 (TSMC 5nm) |
-| **Ventaxa Principal** | Cores P+E heteroxéneos | Relación prezo-rendimiento |
-| **Servidores** | Xeon (forte) | EPYC (forte) |
-| **Gaming** | Core i9 excelente | Ryzen forte |
-| **IA Nativa** | Intel Gaudi débil | MI300X forte |
+* **U (Ultra Low Power):** Deseñados para **portátiles finos**. Prioriza a batería e **consume moi pouco**, pero ten **menos potencia** bruta.
+* **H / HS / HX (High Performance):** Procesadores de alto rendemento para **portátiles *gaming* ou estacións de traballo**. Consomen moita máis batería e requiren mellor ventilación.
+* **K (Intel) / X (AMD):** **Versións de sobremesa** optimizadas para acadar frecuencias máis altas. Os "K" de Intel están desbloqueados para facer *overclock*.
+* **F (Intel):** Indica que o procesador **non ten gráficos integrados**. É obrigatorio mercar unha tarxeta gráfica dedicada (NVIDIA ou Radeon).
+* **G (AMD):** Indica que o **procesador ten gráficos integrados potentes (APU)**, ideais se non vas mercar unha tarxeta gráfica aparte.
 
-### 6.3 Razóns da Rivalidade Técnica
+### 3. A NPU e a IA 
+Se queres un equipo preparado para as novas ferramentas de IA local (Copilot+, edición de vídeo intelixente, etc.):
 
-**Intel Vantaxes:**
-- Primeiro a sacar arquitectura P+E cores
-- Moolers gráficos integrados (Intel Graphics)
-- Ecosistema maduro
+* **En Intel:** Busca a nova denominación **Core Ultra** (Series 1 ou 2).
+* **En AMD:** Busca modelos coa etiqueta **Ryzen AI** (como as series 7040, 8040 ou os novos Ryzen AI 300).
+* **Dato técnico:** Verifica que a NPU teña máis de **40 TOPs** se queres a certificación completa de Microsoft.
 
-**AMD Vantaxes:**
-- Menor consumo enerxético
-- Relación cores-prezo mellor
-- Arquitectura aberta cOn proveedores diversos (TSMC)
+### 4. TDP, Refrixeración e "Thermal Throttling"
+
+O **TDP (Thermal Design Power)** indica cantos vatios consome e **cantos vatios de calor debe disipar** o ventilador.
+
+* Se compras un portátil moi fino cun procesador "HX" ou un i9, é moi probable que sufra **Thermal Throttling**: o **procesador baixa a súa velocidade bruscamente porque se quenta demasiado** (supera os 95-100°C), facendo que o rendemento real sexa inferior ao esperado.
 
 ---
 
-## 7. IA nos Procesadores: Cambios Recentes
+### 7. Tipos de Núcleos en AMD e en Intel
 
-### 7.1 Cambio de Paradigma
+### 7.1. Intel: A arquitectura híbrida real (P-Cores + E-Cores)
 
-Historicamente, a IA executábase en **GPUs externas** (NVIDIA). Agora, **os propios CPUs teñen aceleradores IA integrados**.
+Desde a 12ª xeración (Alder Lake), Intel introduciu o concepto de **núcleos heteroxéneos**. No mesmo chip hai dous tipos de núcleos:
 
-### 7.2 Aceleradores IA Integrados
+* **P-Cores (Performance):** Núcleos grandes e potentes, con Hyper-Threading (2 fíos por núcleo). Encárganse das tarefas pesadas (xogos, edición).
+* **E-Cores (Efficiency):** Núcleos pequenos, sen Hyper-Threading (1 fío por núcleo). Encárganse de tarefas de fondo e aforro de enerxía.
 
-**Intel Neural Processing Unit (NPU):**
-- En Intel Core Ultra (2023+)
-- Capacidad: Ejecutar modelos IA pequenos en portátiles
+    Xeralmente, os modelos de gama alta (i7, i9) teñen moitos E-Cores. Un i9-14900K, por exemplo, ten 8P + 16E.
 
-**Apple Neural Engine:**
-- En todos os MacBooks desde M1
-- Optimizado para visión, procesamento de audio
+### 7.2. AMD: Núcleos "Zen" e "Zen c"
 
-**AMD Ryzen AI:**
-- Integrado en Ryzen 7040U+ (portátiles)
-- Acelerador de IA de XDNA
+AMD non usa P-Cores e E-Cores ao estilo de Intel. Ata hai pouco, todos os núcleos de AMD eran iguais e de alto rendemento. Recentemente, introduciu os núcleos **"c" (como o Zen 4c)**.
 
-### 7.3 Exemplos Prácticos
-
-**Caso 1: Portátil con NPU**
-- Intel Core Ultra con NPU executar:
-  - Reconocemento de voz en local (non na nube)
-  - Edición de imaxes con IA nunca en segundo plano
-  - Tradución en tempo real
-
-**Caso 2: Servidor con IA Nativa**
-- NVIDIA Grace Hopper:
-  - CPU (arm64) + GPU Hopper
-  - Máximo para training de LLMs 
+A diferenza de Intel, os núcleos "c" de AMD teñen o **mesmo conxunto de instrucións e a mesma potencia por ciclo** que os núcleos estándar. Simplemente están deseñados de forma máis compacta físicamente, é dicir algúns son máis pequenos, **para meter máis núcleos en menos espazo** e consumir algo menos.
+  
+Estes núcleospoden verse nos novos procesadores de portátiles (**Ryzen 8000/9000** ou **Ryzen AI 300**).
 
 ---
 
-## 8. Diferencia Entre CPU, GPU e Procesador de IA
+## 8. Procesadores de Portátil vs. Sobremesa
 
-### 8.1 CPU (Central Processing Unit)
+Aínda que un procesador de portátil e un de sobremesa poidan ter o mesmo nome (por exemplo, un "Intel Core i7"), o seu rendemento e comportamento son moi diferentes debido a dous factores críticos: o **espazo** e a **capacidade de refrixeración**.
 
-**Definición:** O procesador principal. Executa instrucións secuencialmente.
+### 8.1. Diferenzas Técnicas Clave
 
-**Características:**
-- Poucos cores (2-24 típicamente), pero cada un é moi potente
-- Espabillez cOn lóxica complexa e decisións
-- Baixa latencia de acceso a memoria
-- Rendimiento: ~GFLOPs (Giga Floating Operations per Second)
+| Característica | Procesador de Sobremesa (Desktop) | Procesador de Portátil (Laptop) |
+| :--- | :--- | :--- |
+| **Consumo (TDP)** | Alto (65W - 250W). Prioriza a potencia bruta. | Baixo (15W - 45W). Prioriza a duración da batería. |
+| **Encapsulado** | **LGA/PGA**: Instálase nun socket e pode substituírse. | **BGA**: Vai soldado á placa base. Non se pode ampliar. |
+| **Refrixeración** | Disipadores grandes e moito fluxo de aire. | Sistemas compactos (heatpipes finos). Moi limitado. |
+| **Frecuencia (GHz)** | Frecuencias base e turbo máis altas e estables. | Frecuencias máis baixas para evitar o sobrequecemento. |
+| **Gráficos (iGPU)** | Adoitan ser básicos (suponse que usarás unha GPU externa). | Adoitan ser potentes (para non depender de gráficas extra). |
 
-**Exemplo:** Intel Core i7 procesando un programa en Python
+### 8.2. O fenómeno do Thermal Throttling
 
-### 8.2 GPU (Graphics Processing Unit)
+Nos portátiles, debido ao pouco espazo, o procesador alcanza temperaturas críticas axiña. Para evitar que o chip se queime, o sistema aplica o **Thermal Throttling**: reduce drasticamente a velocidade do reloxo (GHz). Por iso, **un i9 nun portátil ultra-fino pode chegar a render menos que un i5 nun ordenador de sobremesa** ben refrixerado.
 
-**Definición:** Procesador especializado en paralelo masivo. Millares de cores pequenos.
+## 9. Protocolos de Seguridade Técnica para manipular procesadores
 
-**Características:**
-- Moitos cores (1000-10000+), cada un é simples
-- Especializado en operacións vectoriales en paralelo
-- Altíssimo throughput (capacidade de procesamento)
-- Rendimiento: ~TFLOPs (Tera Floating Operations per Second)
-
-**Exemplo:** NVIDIA RTX 4090 renderizando gráficos ou entrenando rede neuronal
-
-### 8.3 NPU (Neural Processing Unit) / TPU (Tensor Processing Unit)
-
-**Definición:** Acelerador especializado en multiplicacións de matrices, necesario para IA/ML.
-
-**Características:**
-- Cores ultra-especializados para operacións tensorials
-- Consumo enerxético moi baixo
-- Inferencia ultra-rápida, entrenamiento limitado
-- Rendimiento: ~TOPs (Tera Operations per Second)
-
-**Exemplo:** Apple Neural Engine procesando Face ID, o Intel NPU correndo Copilot Pro
-
-### 8.4 Comparativa Visual
-
-```
-CPU:   ←→ [Core 1 (Complexo)] ←→ [Core 2 (Complexo)] ← Poucos cores, potentes
-
-GPU:   [C][C][C][C][C][C][C][C]
-       [C][C][C][C][C][C][C][C]
-       [C][C][C][C][C][C][C][C] ← Millares de cores, simples
-
-NPU:   [⨯][⨯][⨯][⨯][⨯][⨯][⨯][⨯] ← Cores tensor especializados
-       [⨯][⨯][⨯][⨯][⨯][⨯][⨯][⨯]
-```
-
-### 8.5 Benchmarks Comparativos (Exemplos)
-
-| Operación | CPU (i9-14900K) | GPU (RTX 4090) | NPU (Intel Gaudi) |
-|-----------|-----------------|---|---|
-| Matrix 1000x1000 (FP32) | 10 segundos | 0.1 segundos | 0.05 segundos |
-| Inferencia LLM (4-bit) | 50 t/s | 500 t/s | 1000 t/s |
-| Compilación C++ | Óptimo | Pobre | Non aplicable |
-| OpenGL Rendering | Pobre | Óptimo | Pobre |
-
-**Conclusión:** Cada un é especialista na súa área.
-
----
-
-## 9. Tecnoloxías de Optimización
-
-### 9.1 Thermal Throttling
-
-**Concepto:** Cando a temperatura supera o límite, o procesador reduce automaticamente a velocidad para protexerse.
-
-- Intel: ~90-100°C límite
-- AMD: ~95°C límite
-
-**Impacto:** Perda de rendimiento pero evita queimacións
-
-### 9.2 Turbo Boost (Intel) / Precision Boost (AMD)
-
-| Tecnoloxía | Fabricante | O que fai |
-|-----------|-----------|----------|
-| **Turbo Boost 5.0** | Intel | Aumenta frecuencia dinámicamente ata 5.8 GHz |
-| **Precision Boost Overdrive 2** | AMD | Autoboost até máximo termal e enerxético |
-
-### 9.3 Undervolting
-
-**Técnica avanzada:** Reducir a voltaxe (V) mentres se mantén a frecuencia (GHz).
-
-- Menos calor e consumo
-- Máis autonomía en portátiles
-- Requiere conocemento técnico e ferramentas como Throttlestop
-
----
-
-## 10. Guía de Compra: Escoller o Procesador Axeitado
-
-### 10.1 Para Ofimática e Navegación Web
-
-**Requisitos:**
-- CPU base: 2 GHz+
-- Cores: 4-6
-- RAM: 8 GB
-- TDP: < 15W (se é portátil)
-
-**Recomendación:**
-- Intel Core i3-13100
-- AMD Ryzen 5 5500
-- Apple M3 (MacBook Air)
-
-### 10.2 Para Gaming 1080p/1440p
-
-**Requisitos:**
-- CPU base: 3.5 GHz+
-- Cores: 8-10
-- Threads: 16+
-- RAM: 16-32 GB
-- GPU: Dedicada en portátil
-
-**Recomendación:**
-- Intel Core i7-14700K
-- AMD Ryzen 7 7700X
-- Portátil: Ryzen 7 8840HS
-
-### 10.3 Para Renderizado 3D, Edición 4K
-
-**Requisitos:**
-- Cores: 12-16+
-- Threads: 24-32+
-- RAM: 32-64 GB
-- TDP alto (150W+)
-
-**Recomendación:**
-- Intel Core i9-14900K
-- AMD Ryzen 9 7950X3D
-
-### 10.4 Para Servidor / Datacenter
-
-**Requisitos:**
-- Cores: 16-128
-- ECC RAM soportada
-- Socket estándar (LGA, EPYC)
-- TDP: 200-700W
-
-**Recomendación:**
-- Intel Xeon Platinum 8592+
-- AMD EPYC 9755
-
----
-
-## 11. Configuracións Recomendadas (Resumen)
-
-| Uso | CPU | Cores | Prezo Aprox. | Porto |
-|-----|-----|-------|-------------|-------|
-| **Ultraportátil** | Intel Core Ultra 5 135U | 10 | €600-800 | Sí |
-| **Gaming Casual 1080p** | Intel i5-14400 | 10 | €200 | Sobremesa |
-| **Gaming 1440p+ / Streaming** | Intel i7-14700K | 20 | €350 | Sobremesa |
-| **Renderizado 3D** | AMD Ryzen 9 7950X3D | 16 | €500 | Sobremesa |
-| **Servidor Web** | Intel Xeon Gold 6426Y | 32 | €3000+ | Datacenter |
-
----
-
-## 12. Procedementos de Seguridade Específica para Procesador
-
-### 12.1 Descarga Electrostática (ESD)
-
-✅ **Antes de manipular o procesador:**
-1. Ponte pulseira antiestática
-2. Toca a carcasa metálica do case
-3. Usa tapete antiestático
-
-⚠️ **Non toques ningunha pista de ouro no processador**
-
-### 12.2 Seguridade Térmica
-
-⚠️ **Crítico:** Instalar correctamente a disipación térmica
-
-1. **Aplicar Pasta Térmica:** Pequeña cantidade no centro do die
-2. **Non sobrepasar:** Exceso de pasta reduce a disipación
-3. **Venlar Correctamente:** Asegúrate de que os ventiladores funcionan
-
-### 12.3 Manipulación Segura do Socket
-
-⚠️ **Intel LGA (Land Grid Array):**
-- A patas están na carcasa, non no procesador
-- Se se dobra unha pata: procesador inútil
-
-⚠️ **AMD AM5 (Pin Grid Array):**
-- As patas están no procesador
-- Manter protector de socket cando non hai procesador
-
-**Pasos Seguros:**
-1. Apaga o computador e desconecta a fonte
-2. Abre o **retention mechanism** do socket
-3. Inserta o procesador coidadosamente (COS con muesca)
-4. Pecha a grella de retención
-5. Instala o cooler cOn sistema de fixación correcto
-
----
-
-## 13. Estándares e Órganos de Regulación
-
-- **Intel:** Socket LGA (standards propios)
-- **AMD:** Socket AM5 (estándar aberto)
-- **ARM Holdings:** Licencia arquitectura (non fabrica)
-
-> Os estándares abertos (como AM5 de AMD) permiten que múltiples fabricantes fagan coolers compatibles, reducindo custos.
-
----
-
-## 14. Referencias Técnicas
-
-- Intel Official: https://www.intel.com/content/www/es/es/ark.html
-- AMD Spec Sheet: https://www.amd.com/es/products/specifications/processors
-- Tom's Hardware CPU Hierarchy: https://www.tomshardware.com/reviews/cpu-hierarchy
-- TechPowerUp CPU Database: https://www.techpowerup.com/cpu-specs/
-
----
-
-## 15. Páxinas Interesantes para Profundizar
-
-- [Anandtech (análises técnicas)](https://www.anandtech.com/)
-- [Notebookcheck (parsers de portátiles)](https://www.notebookcheck.net/)
-- [TechPowerUp (specs detalladas)](https://www.techpowerup.com/)
-- [Gamers Nexus (benchmarks de calidade)](https://www.gamersnexus.net/)
-
----
+* **Protección ESD:** Uso de pulseira antiestática ou descarga previa en chasis.
+* **Pasta Térmica:** Aplicar a cantidade xusta (tamaño dun chícharo). O exceso reduce a disipación.
+* **Manipulación:** Nunca tocar os contactos de ouro nin aplicar forza excesiva sobre o socket.
 

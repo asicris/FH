@@ -47,7 +47,7 @@ Tes que escoller entre estas dúas configuracións e xustificar cal é mellor pa
 **Obxectivo:** Familiarizarse coas ferramentas de diagnóstico do Sistema Operativo.
 
 **Enunciado:**
-Accede a un equipo con **Ubuntu Linux** (pode ser unha máquina virtual) e executa os comandos necesarios para cubrir a seguinte ficha técnica do procesador real que estás a usar, **captura pantalla da saída de cada un dos comandos e da a resposta ao que se pregunta**:
+Accede a un equipo con **Ubuntu Linux** (pode ser unha máquina virtual) e executa os comandos necesarios para cubrir a seguinte ficha técnica do procesador real que estás a usar:
 
 1.  **Modelo exacto:** (Comando: `lscpu "`)
 2.  **Arquitectura:** (¿É x86_64 ou ARM?)
@@ -69,3 +69,47 @@ Une cada procesador coa súa característica de montaxe ou uso principal:
 | 2. AMD Ryzen 7 8840**U** | B. Requírese tarxeta gráfica dedicada obrigatoriamente. |
 | 3. Intel Core Ultra 7 **155H** | C. Socket AM5, deseño de chiplets. |
 | 4. AMD Ryzen 9 **7950X** | D. Alto rendemento en portátil, moito consumo. |
+
+---
+
+# 📝 Solucións
+
+---
+
+## Solución Exercicio 1: Análise Comparativa de Microprocesadores (Arquitectura Intel Core Ultra)
+
+A continuación amósanse os datos correctos que o alumno debería cubrir:
+
+### Táboa de Datos Solucionada
+
+| Característica | Core Ultra 5 225 | Core Ultra 9 285K |
+| :--- | :--- | :--- |
+| **Núcleos Totais** | 10 (6P + 4E) | 24 (8P + 16E) |
+| **Frecuencia Turbo** | 4.9 GHz | 5.7 GHz |
+| **Overclocking** | Non (Multiplicador Bloqueado) | Si (Multiplicador Desbloqueado) |
+| **Uso Ideal** | Ofimática avanzada, Gaming 1080p, Postos de usuario estándar. | Virtualización masiva, Render 3D, IA avanzada, Servidores locais de proba. |
+| **Prezo** | ~174 € | ~580 € |
+
+### Respostas Sugeridas ás Preguntas
+
+1. **Eficiencia vs Potencia:** O Ultra 9 ten máis E-Cores para xestionar cargas de traballo multitarefa masivas (como renderizado ou compilación de software) sen saturar os núcleos principais. En ASIR, notaríase ao executar **múltiplas máquinas virtuais simultaneamente**.
+2. **O factor "K":** A "K" significa que o multiplicador está desbloqueado para facer overclocking. Debemos escoller con moito coidado o **sistema de refrixeración** (disipador ou líquida), xa que o seu TDP e a calor xerada son moito máis altos.
+3. **Relación custo-rendemento:** **Non paga a pena.** Para tarefas de administración básica (terminal, navegador, documentos), a potencia extra do Ultra 9 quedaría desaproveitada. O Ultra 5 ofrece un rendemento máis que suficiente por unha fracción do custo.
+
+---
+
+
+
+### Solución Exercicio 2:
+
+1.  **Non é viable.** Só o procesador xa supera o orzamento total por torre (580€ > 450€).
+2.  **Polo equilibrio de compoñentes.** Para deseño é vital ter moita RAM (32GB) e un disco rápido. Un Ultra 9 cunha placa barata e pouca RAM daría peor rendemento real e sería moito máis caro.
+3.  O Ryzen 5 7600 non ten sufixo "G", pero os Ryzen 7000/9000 xa traen gráficos básicos integrados, suficientes para deseño 2D.
+
+### Solución Exercicio 4:
+
+* **1 - B:** O sufixo "F" en Intel indica ausencia de iGPU.
+* **2 - A:** O sufixo "U" indica baixo consumo, típico de ultraportátiles soldados.
+* **3 - D:** O sufixo "H" indica alto rendemento (High Performance) en portátiles.
+* **4 - C:** A serie 7000/9000 de AMD usa o socket AM5 e arquitectura de chiplets.
+

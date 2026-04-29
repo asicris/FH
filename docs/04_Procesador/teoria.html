@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>teoria.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="microprocesadores">Microprocesadores</h1>
+<h2 id="1-definici%C3%B3n-e-fundamentos-t%C3%A9cnicos">1. Definición e Fundamentos Técnicos</h2>
+<p>O <strong>Microprocesador (CPU)</strong> é o circuíto integrado central que actúa como o &quot;cerebro&quot; do sistema. A súa función é executar instrucións mediante operacións lóxicas e aritméticas a velocidades de nanosegundos.</p>
+<h3 id="11-o-ciclo-de-vida-da-instruci%C3%B3n">1.1. O Ciclo de Vida da Instrución</h3>
+<p>O funcionamento baséase no ciclo <strong>Fetch-Decode-Execute</strong>, coordinado polo reloxo do sistema:</p>
+<p>1.<strong>Fetch (Lectura):</strong> Captura a instrución dende a memoria.
+2.<strong>Decode (Decodificación):</strong> Traduce a instrución en sinais eléctricos.
+3.<strong>Execute (Execución):</strong> Realiza a operación a través da ALU (Unidade Aritmético-Lóxica).</p>
+<h3 id="12-arquitecturas-cisc-vs-risc">1.2. Arquitecturas: CISC vs RISC</h3>
+<ul>
+<li><strong>CISC (Complex Instruction Set Computer):</strong> Instrucións complexas e potentes. É a base da <strong>arquitectura x86</strong> (Intel/AMD) en PCs e servidores.</li>
+<li><strong>RISC (Reduced Instruction Set Computer):</strong> Instrucións simples e ultra-rápidas. É a base da <strong>arquitectura ARM</strong> (móbiles, Apple M-Series e Qualcomm Snapdragon X), destacando pola súa eficiencia enerxética.</li>
+</ul>
+<hr>
+<h2 id="2-caracter%C3%ADsticas-f%C3%ADsicas-e-estruturais">2. Características Físicas e Estruturais</h2>
+<h3 id="21-conexi%C3%B3n-e-sockets">2.1. Conexión e Sockets</h3>
+<p>O <strong>socket</strong> é a interface física entre o procesador e a placa base:</p>
+<ul>
+<li><strong>LGA :</strong> Os pins están no socket da placa base. Estándar en Intel e nos novos AMD (AM5). Reduce o risco de danar o CPU.</li>
+<li><strong>PGA :</strong> Os pins están no propio procesador. Tradicional en AMD (AM4).</li>
+<li><strong>BGA :</strong> Soldado directamente á placa mediante bólas de estaño. Común en portátiles, consolas e SoCs (<em>System on Chip</em>).</li>
+</ul>
+<h3 id="22-xerarqu%C3%ADa-de-memoria-cach%C3%A9">2.2. Xerarquía de Memoria Caché</h3>
+<p>Memoria ultra-rápida que evita as esperas pola RAM:</p>
+<ul>
+<li><strong>L1:</strong> Moi pequena e a máis rápida. Integrada en cada núcleo.</li>
+<li><strong>L2:</strong> Intermedia en velocidade e capacidade.</li>
+<li><strong>L3:</strong> A máis grande e lenta da xerarquía, compartida entre todos os núcleos. É vital en tarefas de gaming e renderizado.</li>
+</ul>
+<hr>
+<h2 id="3-o-paradigma-moderno-cpu-gpu-e-npu">3. O Paradigma Moderno: CPU, GPU e NPU</h2>
+<p>Os procesadores actuais son <strong>heteroxéneos</strong>, delegando tarefas en aceleradores específicos:</p>
+<p>1.<strong>CPU :</strong> Poucos núcleos moi potentes. Ideal para o <strong>Sistema Operativo</strong> e a lóxica de control complexa (<em>Single-Core</em>).
+2.<strong>GPU (Paralelo):</strong> Millares de núcleos simples. Especializado en <strong>matemáticas vectoriais, gráficos, vídeo</strong> e cálculo masivo.
+3.<strong>NPU (Neural Processing Unit):</strong> Acelerador especializado en multiplicar matrices de baixa precisión (tensores). É fundamental para a <strong>IA en local</strong>, permitindo tarefas como o desenfoque de fondos en vídeo ou tradución instantánea con consumo mínimo. Os procesadores modernos con NPU son :</p>
+<ul>
+<li><strong>Intel</strong> identifíca os procesadores con IA na serie <strong>Core Ultra</strong></li>
+<li><strong>AMD</strong> identifícaos na serie <strong>Ryzen AI</strong> (7040/8040 en diante).</li>
+<li><strong>Snapdragon</strong> - <strong>X Elite</strong>: Todos os modelos desta gama teñen unha NPU dedicada denominada Qualcomm Hexagon. <strong>X Plus</strong>: Tamén inclúen NPU de alto rendemento. En móbiles <strong>Snapdragon 8 Gen X</strong></li>
+</ul>
+<hr>
+<h2 id="4-intel-vs-amd-evoluci%C3%B3n-e-rivalidade">4. Intel vs AMD: Evolución e Rivalidade</h2>
+<h3 id="41-perspectiva-hist%C3%B3rica">4.1. Perspectiva Histórica</h3>
+<ul>
+<li><strong>1980s-90s:</strong> Hexemonía de <strong>Intel</strong> coas familias <strong>x86 e Pentium</strong>.</li>
+<li><strong>2000s:</strong> AMD lanza o Athlon 64, superando a Intel en 64 bits. Intel responde coa exitosa arquitectura <strong>Core 2 Duo</strong>.</li>
+<li><strong>2017-Actualidade:</strong> AMD revoluciona o mercado co deseño de <em>chiplets</em> nos <strong>Ryzen</strong>, forzando a Intel a innovar coa <strong>arquitectura híbrida</strong> (P-Cores de rendemento e E-Cores de eficiencia).</li>
+</ul>
+<h3 id="42-comparativa-de-fabricantes-intel-amd-qualcomm-e-nvidia">4.2. Comparativa de Fabricantes: Intel, AMD, Qualcomm e NVIDIA</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Aspecto</th>
+<th style="text-align:left"><strong>Intel</strong></th>
+<th style="text-align:left"><strong>AMD</strong></th>
+<th style="text-align:left"><strong>Snapdragon (Qualcomm)</strong></th>
+<th style="text-align:left"><strong>NVIDIA</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Arquitectura</strong></td>
+<td style="text-align:left"><strong>Híbrida</strong> (P-Cores + E-Cores). Baseada en x86.</td>
+<td style="text-align:left"><strong>Chiplets</strong> (MCM). Énfase en Zen e Zen-c (x86).</td>
+<td style="text-align:left"><strong>ARM</strong> (Kryo/Oryon). Arquitectura RISC ultra-eficiente.</td>
+<td style="text-align:left"><strong>ARM + GPU</strong>. Arquitectura Grace (CPU) e Hopper/Blackwell (GPU).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Punto Forte</strong></td>
+<td style="text-align:left">Mellor rendemento en <em>single-core</em> e ecosistema de software maduro.</td>
+<td style="text-align:left">Mellor relación núcleos/prezo e gran eficiencia grazas aos chiplets.</td>
+<td style="text-align:left">Autonomía de batería extrema e NPUs líderes para IA en portátiles.</td>
+<td style="text-align:left">Liderazgo absoluto en IA, centros de datos e procesamento paralelo (GPU).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Socket / Montaxe</strong></td>
+<td style="text-align:left"><strong>LGA</strong> (Pins na placa). Cambia cada 2 xeracións aprox.</td>
+<td style="text-align:left"><strong>AM5 (LGA)</strong>. Moi duradeiro (soporte por moitos anos).</td>
+<td style="text-align:left"><strong>BGA</strong> (Soldado). Non intercambiable, integrado en SoC.</td>
+<td style="text-align:left"><strong>BGA ou Propios</strong>. Deseños integrados para servidores e IA.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>IA (NPU)</strong></td>
+<td style="text-align:left"><strong>Intel AI Boost</strong> (integrada en Core Ultra).</td>
+<td style="text-align:left"><strong>Ryzen AI</strong> (tecnoloxía XDNA).</td>
+<td style="text-align:left"><strong>Hexagon NPU</strong> (Líder actual en TOPs para Windows).</td>
+<td style="text-align:left"><strong>Tensor Cores</strong> (Líder en adestramento de IA masiva).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Uso Ideal</strong></td>
+<td style="text-align:left">Gaming, estacións de traballo e empresa estándar.</td>
+<td style="text-align:left">Gaming (3D V-Cache), servidores (EPYC) e multitarea.</td>
+<td style="text-align:left">Ultraportátiles (Always Connected PCs) e móbiles.</td>
+<td style="text-align:left">Supercomputación, adestramento de LLMs e Cloud.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Outros fabricantes:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Fabricante</th>
+<th style="text-align:left">Que fabrica principalmente?</th>
+<th style="text-align:left">Descrición e Enfoque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Samsung</strong></td>
+<td style="text-align:left">Procesadores Exynos para móbiles e fabricación para terceiros.</td>
+<td style="text-align:left">Ademais de deseñar os seus propios chips para móbiles, é un dos poucos no mundo con <strong>fundicións propias</strong> (fábricas) capaces de crear chips en procesos avanzados de 3nm e 4nm.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>TSMC</strong></td>
+<td style="text-align:left">Non deseña, pero <strong>fabrica</strong> para case todos os anteriores (Apple, AMD, NVIDIA).</td>
+<td style="text-align:left">Aínda que non vende procesadores coa súa marca, é a empresa máis crítica: sen as súas fábricas en Taiwán, o 90% dos procesadores avanzados do mundo non existirían.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>ARM Holdings</strong></td>
+<td style="text-align:left">Deseña a <strong>arquitectura</strong> e as licenzas, pero non fabrica chips físicos.</td>
+<td style="text-align:left">É a empresa que &quot;debuxa os planos&quot;. Apple, Qualcomm ou Samsung páganlle por usar a súa arquitectura RISC, que é a base de case tódolos procesadores de móbiles e portátiles de baixo consumo actuais.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>En resumo:</strong></p>
+<ul>
+<li><strong>Deseñadores &quot;Fabless&quot;:</strong> Empresas como <strong>AMD, Apple ou NVIDIA</strong> que deseñan os chips pero non teñen fábricas propias; mándanos fabricar a TSMC ou Samsung.</li>
+<li><strong>Fabricantes Integrados (IDM):</strong> <strong>Intel</strong> é un dos poucos que aínda deseña e fabrica os seus propios chips nas súas propias instalacións (aínda que recentemente comezou a externalizar algunhas partes a TSMC).</li>
+<li><strong>Arquitectura:</strong> O mercado divídese hoxe entre o mundo <strong>x86 (Intel/AMD)</strong>, onde prima a compatibilidade de software de escritorio, e o mundo <strong>ARM (Apple/Qualcomm)</strong>, onde prima a autonomía e a integración.</li>
+</ul>
+<h3 id="52-recomendaci%C3%B3ns-procesador-segundo-finalidade-do-pc">5.2 Recomendacións procesador segundo finalidade do PC</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Perfil</th>
+<th style="text-align:left">Fabricantes Clave</th>
+<th style="text-align:left">Recomendación Técnica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Ofimática / Home Office</strong></td>
+<td style="text-align:left">Intel, AMD</td>
+<td style="text-align:left">Intel i3 ou Ryzen 3. Abondo para tarefas web.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Sistemas / Virtualización</strong></td>
+<td style="text-align:left">AMD, Intel</td>
+<td style="text-align:left"><strong>Ryzen 7 / Core i7</strong>. Necesitas moitos fíos (Threads) para VMs.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Gaming de Alto Nivel</strong></td>
+<td style="text-align:left">AMD</td>
+<td style="text-align:left"><strong>Ryzen 7 7800X3D</strong> (pola súa memoria 3D V-Cache).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Portabilidade Extrema</strong></td>
+<td style="text-align:left">Apple, Qualcomm</td>
+<td style="text-align:left"><strong>Apple M3 / Snapdragon X Elite</strong> (Arquitectura ARM).</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Servidores / Cloud</strong></td>
+<td style="text-align:left">Intel, AMD, NVIDIA</td>
+<td style="text-align:left"><strong>Xeon, EPYC ou NVIDIA Grace</strong>. Soporte para RAM ECC.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="6-que-debo-mirar-%C3%A1-hora-de-mercar-un-ordenador-en-relaci%C3%B3n-ao-procesador">6. Que debo mirar á hora de mercar un ordenador? (En relación ao procesador)</h2>
+<p>Se vas mercar un equipo, non te fixes só no nome da gama (i5, Ryzen 7...). O máis importante é saber ler a &quot;matrícula&quot; do procesador. Mira estes catro puntos clave:</p>
+<h3 id="1-a-xeraci%C3%B3n-un-factor-determinante">1. A Xeración (Un factor determinante)</h3>
+<p>A arquitectura mellora cada ano. Un procesador de gama media actual adoita ser máis potente que un de gama alta de hai 4 anos.</p>
+<ul>
+<li><strong>En Intel:</strong> O primeiro ou os dous primeiros números tras o guión indican a xeración.
+<ul>
+<li><em>Exemplo:</em> i7-<strong>14</strong>700K (Xeración 14). Un i5-<strong>14</strong>400 é superior a un i7-<strong>11</strong>700.</li>
+</ul>
+</li>
+<li><strong>En AMD:</strong> O primeiro número indica a serie/xeración (aínda que AMD cambiou a nomenclatura recentemente, a regra xeral mantense).
+<ul>
+<li><em>Exemplo:</em> Ryzen 7 <strong>7</strong>800X (Serie 7000, arquitectura Zen 4). Un Ryzen 5 <strong>7</strong>600 adoita render mellor que un Ryzen 9 <strong>3</strong>900.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-o-sufixo-uhkxpara-que-serve-ese-procesador">2. O Sufixo (U|H|K|X...)(Para que serve ese procesador?)</h3>
+<p>A letra ao final do modelo indica o escenario para o que foi deseñado:</p>
+<ul>
+<li><strong>U (Ultra Low Power):</strong> Deseñados para <strong>portátiles finos</strong>. Prioriza a batería e <strong>consume moi pouco</strong>, pero ten <strong>menos potencia</strong> bruta.</li>
+<li><strong>H / HS / HX (High Performance):</strong> Procesadores de alto rendemento para <strong>portátiles <em>gaming</em> ou estacións de traballo</strong>. Consomen moita máis batería e requiren mellor ventilación.</li>
+<li><strong>K (Intel) / X (AMD):</strong> <strong>Versións de sobremesa</strong> optimizadas para acadar frecuencias máis altas. Os &quot;K&quot; de Intel están desbloqueados para facer <em>overclock</em>.</li>
+<li><strong>F (Intel):</strong> Indica que o procesador <strong>non ten gráficos integrados</strong>. É obrigatorio mercar unha tarxeta gráfica dedicada (NVIDIA ou Radeon).</li>
+<li><strong>G (AMD):</strong> Indica que o <strong>procesador ten gráficos integrados potentes (APU)</strong>, ideais se non vas mercar unha tarxeta gráfica aparte.</li>
+</ul>
+<h3 id="3-a-npu-e-a-ia">3. A NPU e a IA</h3>
+<p>Se queres un equipo preparado para as novas ferramentas de IA local (Copilot+, edición de vídeo intelixente, etc.):</p>
+<ul>
+<li><strong>En Intel:</strong> Busca a nova denominación <strong>Core Ultra</strong> (Series 1 ou 2).</li>
+<li><strong>En AMD:</strong> Busca modelos coa etiqueta <strong>Ryzen AI</strong> (como as series 7040, 8040 ou os novos Ryzen AI 300).</li>
+<li><strong>Dato técnico:</strong> Verifica que a NPU teña máis de <strong>40 TOPs</strong> se queres a certificación completa de Microsoft.</li>
+</ul>
+<h3 id="4-tdp-refrixeraci%C3%B3n-e-%22thermal-throttling%22">4. TDP, Refrixeración e &quot;Thermal Throttling&quot;</h3>
+<p>O <strong>TDP (Thermal Design Power)</strong> indica cantos vatios consome e <strong>cantos vatios de calor debe disipar</strong> o ventilador.</p>
+<ul>
+<li>Se compras un portátil moi fino cun procesador &quot;HX&quot; ou un i9, é moi probable que sufra <strong>Thermal Throttling</strong>: o <strong>procesador baixa a súa velocidade bruscamente porque se quenta demasiado</strong> (supera os 95-100°C), facendo que o rendemento real sexa inferior ao esperado.</li>
+</ul>
+<hr>
+<h3 id="7-tipos-de-n%C3%BAcleos-en-amd-e-en-intel">7. Tipos de Núcleos en AMD e en Intel</h3>
+<h3 id="71-intel-a-arquitectura-h%C3%ADbrida-real-p-cores--e-cores">7.1. Intel: A arquitectura híbrida real (P-Cores + E-Cores)</h3>
+<p>Desde a 12ª xeración (Alder Lake), Intel introduciu o concepto de <strong>núcleos heteroxéneos</strong>. No mesmo chip hai dous tipos de núcleos:</p>
+<ul>
+<li>
+<p><strong>P-Cores (Performance):</strong> Núcleos grandes e potentes, con Hyper-Threading (2 fíos por núcleo). Encárganse das tarefas pesadas (xogos, edición).</p>
+</li>
+<li>
+<p><strong>E-Cores (Efficiency):</strong> Núcleos pequenos, sen Hyper-Threading (1 fío por núcleo). Encárganse de tarefas de fondo e aforro de enerxía.</p>
+<p>Xeralmente, os modelos de gama alta (i7, i9) teñen moitos E-Cores. Un i9-14900K, por exemplo, ten 8P + 16E.</p>
+</li>
+</ul>
+<h3 id="72-amd-n%C3%BAcleos-%22zen%22-e-%22zen-c%22">7.2. AMD: Núcleos &quot;Zen&quot; e &quot;Zen c&quot;</h3>
+<p>AMD non usa P-Cores e E-Cores ao estilo de Intel. Ata hai pouco, todos os núcleos de AMD eran iguais e de alto rendemento. Recentemente, introduciu os núcleos <strong>&quot;c&quot; (como o Zen 4c)</strong>.</p>
+<p>A diferenza de Intel, os núcleos &quot;c&quot; de AMD teñen o <strong>mesmo conxunto de instrucións e a mesma potencia por ciclo</strong> que os núcleos estándar. Simplemente están deseñados de forma máis compacta físicamente, é dicir algúns son máis pequenos, <strong>para meter máis núcleos en menos espazo</strong> e consumir algo menos.</p>
+<p>Estes núcleospoden verse nos novos procesadores de portátiles (<strong>Ryzen 8000/9000</strong> ou <strong>Ryzen AI 300</strong>).</p>
+<hr>
+<h2 id="8-procesadores-de-port%C3%A1til-vs-sobremesa">8. Procesadores de Portátil vs. Sobremesa</h2>
+<p>Aínda que un procesador de portátil e un de sobremesa poidan ter o mesmo nome (por exemplo, un &quot;Intel Core i7&quot;), o seu rendemento e comportamento son moi diferentes debido a dous factores críticos: o <strong>espazo</strong> e a <strong>capacidade de refrixeración</strong>.</p>
+<h3 id="81-diferenzas-t%C3%A9cnicas-clave">8.1. Diferenzas Técnicas Clave</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Característica</th>
+<th style="text-align:left">Procesador de Sobremesa (Desktop)</th>
+<th style="text-align:left">Procesador de Portátil (Laptop)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Consumo (TDP)</strong></td>
+<td style="text-align:left">Alto (65W - 250W). Prioriza a potencia bruta.</td>
+<td style="text-align:left">Baixo (15W - 45W). Prioriza a duración da batería.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Encapsulado</strong></td>
+<td style="text-align:left"><strong>LGA/PGA</strong>: Instálase nun socket e pode substituírse.</td>
+<td style="text-align:left"><strong>BGA</strong>: Vai soldado á placa base. Non se pode ampliar.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Refrixeración</strong></td>
+<td style="text-align:left">Disipadores grandes e moito fluxo de aire.</td>
+<td style="text-align:left">Sistemas compactos (heatpipes finos). Moi limitado.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Frecuencia (GHz)</strong></td>
+<td style="text-align:left">Frecuencias base e turbo máis altas e estables.</td>
+<td style="text-align:left">Frecuencias máis baixas para evitar o sobrequecemento.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Gráficos (iGPU)</strong></td>
+<td style="text-align:left">Adoitan ser básicos (suponse que usarás unha GPU externa).</td>
+<td style="text-align:left">Adoitan ser potentes (para non depender de gráficas extra).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-o-fen%C3%B3meno-do-thermal-throttling">8.2. O fenómeno do Thermal Throttling</h3>
+<p>Nos portátiles, debido ao pouco espazo, o procesador alcanza temperaturas críticas axiña. Para evitar que o chip se queime, o sistema aplica o <strong>Thermal Throttling</strong>: reduce drasticamente a velocidade do reloxo (GHz). Por iso, <strong>un i9 nun portátil ultra-fino pode chegar a render menos que un i5 nun ordenador de sobremesa</strong> ben refrixerado.</p>
+<h2 id="9-protocolos-de-seguridade-t%C3%A9cnica-para-manipular-procesadores">9. Protocolos de Seguridade Técnica para manipular procesadores</h2>
+<ul>
+<li><strong>Protección ESD:</strong> Uso de pulseira antiestática ou descarga previa en chasis.</li>
+<li><strong>Pasta Térmica:</strong> Aplicar a cantidade xusta (tamaño dun chícharo). O exceso reduce a disipación.</li>
+<li><strong>Manipulación:</strong> Nunca tocar os contactos de ouro nin aplicar forza excesiva sobre o socket.</li>
+</ul>
+
+</body>
+</html>
