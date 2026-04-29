@@ -6,16 +6,14 @@ Este repositorio contén o material didáctico, prácticas de laboratorio e docu
 
 O proxecto está organizado por unidades temáticas seguindo o currículo oficial, cun enfoque técnico e práctico:
 
-.
-└── docs/
-    ├── 01_Hardware base das estacións de traballo/    # Compoñentes fundamentais
-    ├── 02_Fontes de alimentación/                     # PSU, estándares e medición
-    ├── 03_Memoria_RAM/                                # Tecnoloxías, latencias e xeracións
-    ├── 04_Procesador/                                 # Arquitectura, sockets e TDP
-    ├── 05_Tarxeta gráfica/                            # GPU, VRAM e saídas de vídeo
-    ├── 06_Ferramentas de diagnóstico/                 # Ferramentas para Linux e Windows
-    ├── 07_Ensamblaxe e posta en funcionamento dun PC/ # Montaxe e reparación
-    └── imprimir/                                      # Guías para imprimir
+- 📦 **01_Hardware base das estacións de traballo** — Compoñentes fundamentais
+- ⚡ **02_Fontes de alimentación** — PSU, estándares e medición
+- 🧠 **03_Memoria_RAM** — Tecnoloxías, latencias e xeracións
+- 🔧 **04_Procesador** — Arquitectura, sockets e TDP
+- 🎮 **05_Tarxeta gráfica** — GPU, VRAM e saídas de vídeo
+- 🔍 **06_Ferramentas de diagnóstico** — Ferramentas para Linux e Windows
+- 🛠️ **07_Ensamblaxe e posta en funcionamento dun PC** — Montaxe e reparación
+- 📄 **imprimir** — Guías para imprimir
 
 ## 🛠️ Contido por Unidade
 
