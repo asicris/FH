@@ -8,19 +8,19 @@ O proxecto está organizado por unidades temáticas seguindo o currículo oficia
 
 .
 └── docs/
-    ├── 01_Hardware_base/          # Estacións de traballo e conceptos base
-    ├── 02_Fontes_alimentacion/    # Eficiencia, voltaxes e factor de forma
-    ├── 03_Memoria_RAM/            # Tecnoloxías, latencias e xeracións
-    ├── 04_Procesador/             # Arquitectura, sockets e xerarquía de caché
-    ├── 05_Almacenamento/          # Tecnoloxías SSD (NVMe/SATA) e HDD
-    ├── 06_Buses/                  # Comunicación interna e placa base
-    ├── 07_Tarxeta_grafica/        # GPU, VRAM e saídas de vídeo
-    └── 08_Portos_ES/              # Conectividade externa e ensamblaxe
-    └── assets/images/             # Recursos gráficos e diagramas
+    ├── 01_Hardware base das estacións de traballo/    # Compoñentes fundamentais
+    ├── 02_Fontes de alimentación/                     # PSU, estándares e medición
+    ├── 03_Memoria_RAM/                                # Tecnoloxías, latencias e xeracións
+    ├── 04_Procesador/                                 # Arquitectura, sockets e TDP
+    ├── 05_Tarxeta gráfica/                            # GPU, VRAM e saídas de vídeo
+    ├── 06_Ferramentas de diagnóstico/                 # Ferramentas para Linux e Windows
+    ├── 07_Ensamblaxe e posta en funcionamento dun PC/ # Montaxe e reparación
+    └── imprimir/                                      # Guías para imprimir
 
 ## 🛠️ Contido por Unidade
 
 Cada unidade estrutúrase en catro piares fundamentais:
+
 * `teoria.md`: Especificacións técnicas e fundamentos.
 * `exemplos.md`: Casos de uso e configuracións reais.
 * `laboratorio.md`: Guías paso a paso para montaxe e diagnose.

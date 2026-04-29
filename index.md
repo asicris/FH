@@ -80,73 +80,44 @@ A seguinte táboa presenta a estrutura completa do módulo, con enlaces aos dife
 
 ---
 
-### 5. 💾 Dispositivos de Almacenamento
-
-**Descrición:** Discos duros (HDD), unidades de estado sólido (SSD) e tecnoloxías de conexión (SATA, NVMe, M.2).
-
-| Tipo de Contido | Descrición | Ligazón |
-|---|---|---|
-| 📖 **Teoría** | HDD vs SSD, tecnoloxías NVMe, velocidades e capacidades | [Teoría](docs/05_Dispositivos%20de%20almacenamento/teoria.md) |
-| 💡 **Exemplos** | Modelos actuais de almacenamento | [Exemplos](docs/05_Dispositivos%20de%20almacenamento/exemplos.md) |
-| 📝 **Exercicios** | Selección de almacenamento segundo casos de uso | [Exercicios](docs/05_Dispositivos%20de%20almacenamento/exercicios.md) |
-| 🔬 **Laboratorio** | Instalación e probas SMART | [Laboratorio](docs/05_Dispositivos%20de%20almacenamento/laboratorio.md) |
-| 🖼️ **Imaxes** | Conectores e discos | [Imaxes](docs/05_Dispositivos%20de%20almacenamento/img/) |
-
----
-
-### 6. 🔌 Buses da Placa Base
-
-**Descrición:** Arquitectura interna da placa base, buses de datos, chipset e estándares de comunicación.
-
-| Tipo de Contido | Descrición | Ligazón |
-|---|---|---|
-| 📖 **Teoría** | Buses PCIe, DMI, frecuencias de reloxo | [Teoría](docs/06_Buses%20da%20placa%20base/teoria.md) |
-| 💡 **Exemplos** | Placas base modernas e as súas características | [Exemplos](docs/06_Buses%20da%20placa%20base/exemplos.md) |
-| 📝 **Exercicios** | Identificación de slots e compatibilidades | [Exercicios](docs/06_Buses%20da%20placa%20base/exercicios.md) |
-| 🔬 **Laboratorio** | Identificación de compoñentes na placa base | [Laboratorio](docs/06_Buses%20da%20placa%20base/laboratorio.md) |
-| 🖼️ **Imaxes** | Esquemas de placas base | [Imaxes](docs/06_Buses%20da%20placa%20base/img/) |
-
----
-
-### 7. 🎮 Tarxeta Gráfica (GPU)
+### 5. 🎮 Tarxeta Gráfica (GPU)
 
 **Descrición:** Tipos de tarxetas gráficas, memoria VRAM, conectores de alimentación e instalación.
 
 | Tipo de Contido | Descrición | Ligazón |
 |---|---|---|
-| 📖 **Teoría** | Arquitectura GPU, VRAM, conectores PCIe e 12VHPWR | [Teoría](docs/07_Tarxeta%20gr%C3%A1fica/teoria.md) |
-| 💡 **Exemplos** | Tarxetas NVIDIA e AMD modernas | [Exemplos](docs/07_Tarxeta%20gr%C3%A1fica/exemplos.md) |
-| 📝 **Exercicios** | Selección de GPU segundo aplicacións | [Exercicios](docs/07_Tarxeta%20gr%C3%A1fica/exercicios.md) |
-| 🔬 **Laboratorio** | Instalación e probas de funcionamento | [Laboratorio](docs/07_Tarxeta%20gr%C3%A1fica/laboratorio.md) |
-| 🖼️ **Imaxes** | Tarxetas e conectores | [Imaxes](docs/07_Tarxeta%20gr%C3%A1fica/img/) |
+| 📖 **Teoría** | Arquitectura GPU, VRAM, conectores PCIe e 12VHPWR | [Teoría](docs/05_Tarxeta%20gr%C3%A1fica/teoria.md) |
+| 🖼️ **Imaxes** | Tarxetas e conectores | [Imaxes](docs/05_Tarxeta%20gr%C3%A1fica/img/) |
 
 ---
 
-### 8. 🔗 Portos de E/S
+### 6. 🔧 Ferramentas de Diagnóstico
 
-**Descrición:** Portos USB, DisplayPort, HDMI, Ethernet e outros conectores de entrada/saída.
+**Descrición:** Ferramentas e procedementos para o diagnóstico de discos duros en Linux e Windows.
 
 | Tipo de Contido | Descrición | Ligazón |
 |---|---|---|
-| 📖 **Teoría** | Estándares USB, velocidades, conectores de vídeo | [Teoría](docs/08_Portos%20de%20E_S/teoria.md) |
-| 💡 **Exemplos** | Portos en placas base modernas | [Exemplos](docs/08_Portos%20de%20E_S/exemplos.md) |
-| 📝 **Exercicios** | Identificación de portos e compatibilidades | [Exercicios](docs/08_Portos%20de%20E_S/exercicios.md) |
-| 🔬 **Laboratorio** | Probas de conectividade | [Laboratorio](docs/08_Portos%20de%20E_S/laboratorio.md) |
-| 🖼️ **Imaxes** | Tipos de conectores | [Imaxes](docs/08_Portos%20de%20E_S/img/) |
+| 🖥️ **Linux** | Ferramentas de diagnóstico para Linux (hdparm, smartctl, etc.) | [Ferramentas Linux](docs/06_Ferramentas%20de%20diagn%C3%B3stico/FtasDiagnosticoDiscos-LINUX.md) |
+| 🪟 **Windows** | Ferramentas de diagnóstico para Windows (WD Data Lifeguard, CrystalDiskInfo, etc.) | [Ferramentas Windows](docs/06_Ferramentas%20de%20diagn%C3%B3stico/FtasDiagnosticoDiscosWindows.md) |
+| 🖼️ **Imaxes** | Capturas de pantalla das ferramentas | [Imaxes](docs/06_Ferramentas%20de%20diagn%C3%B3stico/img/) |
 
 ---
 
-### 8.1 🔧 Ensamblaxe e Posta en Funcionamento dun PC
+### 7. 🔧 Ensamblaxe e Posta en Funcionamento dun PC
 
-**Descrición:** Protocolo completo de montaxe dunha estación de traballo desde cero, seguindo normas de seguridade.
+**Descrición:** Protocolo completo de montaxe dunha estación de traballo desde cero, seguindo normas de seguridade, reparación e diagnóstico.
 
 | Tipo de Contido | Descrición | Ligazón |
 |---|---|---|
-| 📖 **Teoría** | Pasos de montaxe, seguridade e precaucións | [Teoría](docs/08_Portos%20de%20E_S/08_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/teoria.md) |
-| 💡 **Exemplos** | Casos reais de dificultades en montaxes | [Exemplos](docs/08_Portos%20de%20E_S/08_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/exemplos.md) |
-| 📝 **Exercicios** | Simulacións de problemas | [Exercicios](docs/08_Portos%20de%20E_S/08_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/exercicios.md) |
-| 🔬 **Laboratorio** | Montaxe completa e diagnóstico | [Laboratorio](docs/08_Portos%20de%20E_S/08_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/laboratorio.md) |
-| 🖼️ **Imaxes** | Paso a paso da montaxe | [Imaxes](docs/08_Portos%20de%20E_S/08_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/img/) |
+| 📖 **Teoría** | Pasos de montaxe, seguridade e precaucións | [Teoría Reparación](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/teoria-reparacion.md) |
+| 💡 **Exemplos** | Casos reais de dificultades en montaxes | [Exemplos](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/exemplos.md) |
+| 📝 **Exercicios** | Simulacións de problemas | [Exercicios](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/exercicios.md) |
+| 🔬 **Laboratorio 1** | Guía de ensamblaxe básica | [Laboratorio 1](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/laboratorio1.md) |
+| 🔬 **Laboratorio 2** | Procedementos avanzados | [Laboratorio 2](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/laboratorio2.md) |
+| 🔬 **Laboratorio 3** | Diagnóstico e solución de problemas | [Laboratorio 3](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/laboratorio3.md) |
+| 🔬 **Laboratorio 4** | Ferramentas Hiren's Boot | [Laboratorio 4](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/laboratorio4Hirens.md) |
+| 📋 **Ficha de Reparación** | Plantilla para documentar reparacións | [Ficha](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/fichareparacion.md) |
+| 🖼️ **Imaxes** | Paso a paso da montaxe | [Imaxes](docs/07_Ensamblaxe%20e%20posta%20en%20funcionamento%20dun%20PC/img/) |
 
 ---
 
@@ -197,9 +168,9 @@ Ao completar este módulo, o estudiantado será capaz de:
 **Módulo:** Fundamentos de Hardware (FH)  
 **Ciclo:** ASIR (Administración de Sistemas Informáticos en Rede)  
 **Nivel:** Ciclo Formativo de Grao Superior  
-**Data de Actualización:** 12 de marzo de 2026
+**Data de Actualización:** 29 de abril de 2026
 
 ---
 
-**Última actualización:** Marzo de 2026  
-**Versión:** 1.0
+**Última actualización:** Abril de 2026  
+**Versión:** 1.1
