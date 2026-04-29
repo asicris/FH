@@ -27,6 +27,6 @@ site/
 config_privada.json
 
 # --- Ficheiros PDF, html e zip
-.pdf
-.html
-.zip
+*.pdf
+*.html
+*.zip
