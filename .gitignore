@@ -1,8 +1,7 @@
 # --- Producion e Seguridade ---
 # Protexer a carpeta de prompts (se non queres que os alumnos vexan a xeración)
 prompts/
-PDF/
-imprimir/
+
 
 # --- Ficheiros de Sistema ---
 .DS_Store
